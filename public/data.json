@@ -1,0 +1,173 @@
+[
+    {
+        "productsId" : 1,
+        "title" : "skirts",
+        "img" : "https://res.cloudinary.com/dr4o1qswz/image/upload/v1669271144/New%20folder%20%282%29/skirts_vzmmpb.jpg",
+        "price" : 1.19,
+        "OriginalPrice": 2.99,
+        "location" : "Dhaka",
+        "useDuration" : "19 Days"
+    },
+    {
+        "productsId" : 1,
+        "title" : "shirts",
+        "img" : "https://res.cloudinary.com/dr4o1qswz/image/upload/v1669271144/New%20folder%20%282%29/shirts_gmotk0.jpg",
+        "price" : 1.45,
+        "OriginalPrice": 3.33,
+        "location" : "Rajshahi",
+        "useDuration" : "15 Days"
+    },
+    {
+        "productsId" : 1,
+        "title" : "sweaters",
+        "img" : "https://res.cloudinary.com/dr4o1qswz/image/upload/v1669271139/New%20folder%20%282%29/sweeters_csbza2.jpg",
+        "price" : 1.57,
+        "OriginalPrice": 2.79,
+        "location" : "Sylhet",
+        "useDuration" : "11 Days"
+    },
+    {
+        "productsId" : 1,
+        "title" : "trousers",
+        "img" : "https://res.cloudinary.com/dr4o1qswz/image/upload/v1669271140/New%20folder%20%282%29/tousers_esskeb.jpg",
+        "price" : 0.99,
+        "OriginalPrice": 1.99,
+        "location" : "Chattogram",
+        "useDuration" : "21 Days"
+    },
+    {
+        "productsId" : 1,
+        "title" : "coats",
+        "img" : "https://res.cloudinary.com/dr4o1qswz/image/upload/v1669271144/New%20folder%20%282%29/coasts_vsfaee.jpg",
+        "price" : 1.99,
+        "OriginalPrice": 3.50,
+        "location" : "Khulna",
+        "useDuration" : "9 Days"
+    },
+    {
+        "productsId" : 1,
+        "title" : "chemises",
+        "img" : "https://res.cloudinary.com/dr4o1qswz/image/upload/v1669271143/New%20folder%20%282%29/6_ylkzmq.jpg",
+        "price" : 1.09,
+        "OriginalPrice": 2.77,
+        "location" : "Barishal",
+        "useDuration" : "22 Days"
+    },
+    {
+        "productsId" : 1,
+        "title" : "jeans",
+        "img" : "https://res.cloudinary.com/dr4o1qswz/image/upload/v1669271140/New%20folder%20%282%29/jeans_mqgbme.jpg",
+        "price" : 2.78,
+        "OriginalPrice": 4.19,
+        "location" : "Rangpur",
+        "useDuration" : "17 Days"
+    },
+
+
+    {
+        "productsId" : 2,
+        "title" : "T-Shirt",
+        "img" : "https://res.cloudinary.com/dr4o1qswz/image/upload/v1669273091/New%20folder%20%282%29/Man/man_lvn6vk.jpg",
+        "price" : 1.99,
+        "OriginalPrice": 2.99,
+        "location" : "Dhaka",
+        "useDuration" : "7 Days"
+    },
+    {
+        "productsId" : 2,
+        "title" : "Panjabi",
+        "img" : "https://res.cloudinary.com/dr4o1qswz/image/upload/v1669273092/New%20folder%20%282%29/Man/panjabi_pv2h3n.jpg",
+        "price" : 2.50,
+        "OriginalPrice": 4.99,
+        "location" : "Rangpur",
+        "useDuration" : "23 days"
+    },
+    {
+        "productsId" : 2,
+        "title" : "Sweater",
+        "img" : "https://res.cloudinary.com/dr4o1qswz/image/upload/v1669273084/New%20folder%20%282%29/Man/sweter_ilgqjq.jpg",
+        "price" : 1.75,
+        "OriginalPrice": 3.15,
+        "location" : "Sylhet",
+        "useDuration" : "22 Days"
+    },
+    {
+        "productsId" : 2,
+        "title" : "Cap",
+        "img" : "https://res.cloudinary.com/dr4o1qswz/image/upload/v1669273090/New%20folder%20%282%29/Man/cap_wbtxwy.jpg",
+        "price" : 0.49,
+        "OriginalPrice": 0.99,
+        "location" : "Chattogram",
+        "useDuration" : "6 Days"
+    },
+    {
+        "productsId" : 2,
+        "title" : "Shirt",
+        "img" : "https://res.cloudinary.com/dr4o1qswz/image/upload/v1669273084/New%20folder%20%282%29/Man/shirt_vcnjtx.jpg",
+        "price" : 1.90,
+        "OriginalPrice": 2.80,
+        "location" : "Barishal",
+        "useDuration" : "11 Days"
+    },
+
+
+    {
+        "productsId" : 3,
+        "title" : "Long Panjabi",
+        "img" : "https://res.cloudinary.com/dr4o1qswz/image/upload/v1669272313/New%20folder%20%282%29/Kids/long_ytdfol.jpg",
+        "price" : 1.90,
+        "OriginalPrice": 2.80,
+        "location" : "Barishal",
+        "useDuration" : "11 Days"
+    },
+
+    {
+        "productsId" : 3,
+        "title" : "Shirt",
+        "img" : "https://res.cloudinary.com/dr4o1qswz/image/upload/v1669272308/New%20folder%20%282%29/Kids/shirt_bkonm9.jpg",
+        "price" : 2.90,
+        "OriginalPrice": 4.80,
+        "location" : "Rajshahi",
+        "useDuration" : "16 Days"
+    },
+
+    {
+        "productsId" : 3,
+        "title" : "Baby T-Shirt",
+        "img" : "https://res.cloudinary.com/dr4o1qswz/image/upload/v1669272307/New%20folder%20%282%29/Kids/baby-t_fthz44.jpg",
+        "price" : 1.40,
+        "OriginalPrice": 2.20,
+        "location" : "Chattogram",
+        "useDuration" : "18 Days"
+    },
+
+    {
+        "productsId" : 3,
+        "title" : "Sweater",
+        "img" : "https://res.cloudinary.com/dr4o1qswz/image/upload/v1669272312/New%20folder%20%282%29/Kids/sweter_ruq7ho.jpg",
+        "price" : 2.30,
+        "OriginalPrice": 4.80,
+        "location" : "Rajshahi",
+        "useDuration" : "12 Days"
+    },
+
+    {
+        "productsId" : 3,
+        "title" : "Jeans",
+        "img" : "https://res.cloudinary.com/dr4o1qswz/image/upload/v1669272310/New%20folder%20%282%29/Kids/jeans1_currdc.jpg",
+        "price" : 1.20,
+        "OriginalPrice": 2.30,
+        "location" : "Rangpur",
+        "useDuration" : "8 Days"
+    },
+
+    {
+        "productsId" : 3,
+        "title" : "Red Cap",
+        "img" : "https://res.cloudinary.com/dr4o1qswz/image/upload/v1669272313/New%20folder%20%282%29/Kids/cap1_d1ddkf.jpg",
+        "price" : 1.90,
+        "OriginalPrice": 2.20,
+        "location" : "Dhaka",
+        "useDuration" : "5 Days"
+    }
+]
