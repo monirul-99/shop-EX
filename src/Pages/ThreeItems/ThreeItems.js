@@ -6,12 +6,12 @@ const Categories = () => {
   const [categoriesData, setCategoriesData] = useState([]);
   useEffect(() => {
     axios
-      .get("https://shop-ex-server.vercel.app/categories-three-card")
+      .get("http://localhost:5000/categories-three-card")
       .then((res) => setCategoriesData(res.data))
       .catch((error) => console.log(error));
   }, []);
   return (
-    <div className="container mx-auto px-5 bg-white text-black pt-10 py-12">
+    <div className="px-5 bg-white text-black pt-10 py-12">
       <div className="font-Babes text-4xl tracking-wide border-l-4 border-red-400">
         <h1 className="px-3">Discover</h1>
         <h1 className="px-3">

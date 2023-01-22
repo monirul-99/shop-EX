@@ -1,6 +1,9 @@
 import React, { useContext } from "react";
 import toast from "react-hot-toast";
+import { IconContext } from "react-icons";
+import { RiHeart2Line } from "react-icons/ri";
 import { AuthContext } from "../../Context/UserContext";
+import Slider from "./Slider";
 
 const BookingModal = ({ modalData, refetch, setModalOpenClose }) => {
   const { user } = useContext(AuthContext);
@@ -33,12 +36,13 @@ const BookingModal = ({ modalData, refetch, setModalOpenClose }) => {
       productsName: name,
       img,
       price,
+      describe,
       orderUser,
       phone,
       email,
       location,
     };
-    fetch(`https://shop-ex-server.vercel.app/orders-products`, {
+    fetch(`http://localhost:5000/orders-products`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -60,70 +64,63 @@ const BookingModal = ({ modalData, refetch, setModalOpenClose }) => {
         className="modal-toggle font-Ubuntu "
       />
       <div className="modal capitalize font-Ubuntu">
-        <div className="modal-box  relative border flex justify-center items-center rounded-md bg-white lg:shadow-2xl">
-          <label
-            htmlFor="my-modal-3"
-            className="btn btn-sm btn-circle absolute right-2 top-2 z-10"
-          >
-            ✕
-          </label>
-          <form
-            onSubmit={shoppingBooking}
-            className="modal-box relative space-y-5 ml-10 shadow-none bg-white"
-            htmlFor=""
-          >
-            <input
-              type="text"
-              name="productsName"
-              defaultValue={title}
-              readOnly
-              className="input input-bordered capitalize w-full max-w-xs bg-gray-300 text-[17px]"
-            />
-            <input
-              type="text"
-              name="price"
-              defaultValue={price}
-              readOnly
-              className="input input-bordered capitalize w-full max-w-xs bg-gray-300 text-[17px]"
-            />
-            <input
-              type="text"
-              name="orderUser"
-              defaultValue={user?.displayName}
-              readOnly
-              className="input input-bordered capitalize w-full max-w-xs bg-gray-300 text-[17px]"
-            />
+        <div className="w-[900px] h-[500px] relative border grid grid-cols-2 gap-5 p-5 justify-center rounded-sm bg-white lg:shadow-2xl border-b">
+          <div>
+            <Slider img={img} />
+            <label
+              htmlFor="my-modal-3"
+              className="btn btn-sm btn-circle absolute right-2 top-2 z-10"
+            >
+              ✕
+            </label>
+          </div>
 
-            <input
-              type="email"
-              name="email"
-              defaultValue={user?.email}
-              readOnly
-              placeholder="E-mail"
-              className="input input-bordered capitalize w-full max-w-xs bg-gray-300 text-[17px]"
-            />
+          <div className="pl-5 font-Josefin">
+            <p className="bg-[#55C1A7] w-16 text-white text-center text-sm py-1 pt-1.5">
+              {status ? "In Stock" : "Out Stock"}
+            </p>
+            <h1 className="text-[32px] font-bold text-[#121212] mt-2">
+              {title}
+            </h1>
+            <h2 className="font-Libre text-[20px]">${price}</h2>
 
-            <input
-              type="text"
-              required
-              name="phone"
-              placeholder="Type Number"
-              className="input input-bordered capitalize w-full max-w-xs bg-gray-300 text-[17px]"
-            />
-            <input
-              type="text"
-              name="location"
-              required
-              placeholder="Meet Your Location"
-              className="input input-bordered capitalize w-full max-w-xs bg-gray-300 text-[17px]"
-            />
+            <div className="py-4">
+              <p>
+                available : <span>In Stock</span>
+              </p>
+              <p>
+                Brand : <span>Unknown</span>
+              </p>
+              <p>
+                Tags : <span>Dress</span>
+              </p>
+            </div>
 
-            <input
-              type="Submit"
-              value="Submit"
-              className="input input-bordered  text-[17px] w-full max-w-xs text-center bg-teal-400"
-            />
-          </form>
+            <p className="text-sm mt-2 mb-3 font-Libre">
+              {describe.slice(0, 119)}. . .
+            </p>
+
+            <aside className="flex items-center space-x-2 mb-3">
+              <IconContext.Provider value={{ size: 21, color: "#ABADAF" }}>
+                <RiHeart2Line />
+              </IconContext.Provider>
+
+              <p>Add To Wishlist</p>
+            </aside>
+
+            <button
+              onClick={shoppingBooking}
+              className="py-3 mb-5 text-[17px] w-full max-w-xs text-center bg-black text-white"
+            >
+              Add To Cart
+            </button>
+            <button
+              onClick={shoppingBooking}
+              className="py-3 mb-5 text-[17px] w-full max-w-xs text-center bg-[#F2F3F5]"
+            >
+              Buy Now
+            </button>
+          </div>
         </div>
       </div>
     </>

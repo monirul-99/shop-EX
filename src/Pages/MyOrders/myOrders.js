@@ -1,47 +1,47 @@
-import { useQuery } from "@tanstack/react-query";
+// import { useQuery } from "@tanstack/react-query";
 import React, { useContext } from "react";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../Context/UserContext";
 
 const MyOrders = () => {
-  const { user } = useContext(AuthContext);
-  const url = `https://shop-ex-server.vercel.app/orders-get-email/${user?.email}`;
+  const { user, myOrders, orderProductsDelete } = useContext(AuthContext);
+  // const url = `http://localhost:5000/orders-get-email/${user?.email}`;
 
-  const {
-    data: myOrders = [],
-    isLoading,
-    refetch,
-  } = useQuery({
-    queryKey: ["bookings", user?.email],
-    queryFn: async () => {
-      const res = await fetch(url, {});
-      const data = await res.json();
-      return data;
-    },
-  });
-  if (isLoading) {
-    return (
-      <div className="h-screen w-screen z-50 flex justify-center items-center bg-gray-200 container mx-auto">
-        <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-gray-900"></div>
-      </div>
-    );
-  }
+  // const {
+  //   data: myOrders = [],
+  //   isLoading,
+  //   refetch,
+  // } = useQuery({
+  //   queryKey: ["bookings", user?.email],
+  //   queryFn: async () => {
+  //     const res = await fetch(url, {});
+  //     const data = await res.json();
+  //     return data;
+  //   },
+  // });
+  // if (isLoading) {
+  //   return (
+  //     <div className="h-screen w-screen z-50 flex justify-center items-center bg-gray-200 container mx-auto">
+  //       <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-gray-900"></div>
+  //     </div>
+  //   );
+  // }
 
-  const orderProductsDelete = (id) => {
-    fetch(`https://shop-ex-server.vercel.app/order-products/${id}`, {
-      method: "DELETE",
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.deletedCount > 0) {
-          toast.success(`Hello, ${user?.displayName} ! Your Products Removed`);
-          refetch();
-        }
-      });
-  };
+  // const orderProductsDelete = (id) => {
+  //   fetch(`http://localhost:5000/order-products/${id}`, {
+  //     method: "DELETE",
+  //   })
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       if (data.deletedCount > 0) {
+  //         toast.success(`Hello, ${user?.displayName} ! Your Products Removed`);
+  //         // refetch();
+  //       }
+  //     });
+  // };
   return (
-    <div className="container mx-auto">
+    <div className="">
       <div className="flex flex-col p-6 space-y-4 sm:p-10 bg-gray-900 dark:text-gray-100">
         <ul className="flex flex-col divide-y divide-gray-700  lg:w-1/2 mx-auto">
           {myOrders.map((order, inx) => (

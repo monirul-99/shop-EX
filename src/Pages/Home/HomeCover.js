@@ -1,35 +1,26 @@
 import React from "react";
-// Import Swiper React components
-import { Swiper, SwiperSlide } from "swiper/react";
-// Import Swiper styles
-import "swiper/css";
-import "swiper/css/pagination";
-// import required modules
-import { Pagination } from "swiper";
+import Cover1 from "../images/Rectangle_168.jpg";
 
-import Cover1 from "../images/cover1.jpg";
-import Cover2 from "../images/cover2.jpg";
-import Cover3 from "../images/cover3.jpg";
 const HomeCover = () => {
   return (
-    <div className="max-w-screen-2xl mx-auto bg-gray-400">
-      <Swiper
-        pagination={{
-          dynamicBullets: true,
-        }}
-        modules={[Pagination]}
-        className=""
-      >
-        <SwiperSlide>
-          <img src={Cover1} alt="" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src={Cover2} alt="" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src={Cover3} alt="" />
-        </SwiperSlide>
-      </Swiper>
+    <div className="relative">
+      <img src={Cover1} alt="" />
+
+      <div className="absolute top-[35%] w-full">
+        <div className="container space-y-7 mx-auto">
+          <h1 className="text-5xl font-Open font-light capitalize text-[#121212]">
+            <span className="text-[#DF302D]">20% OFF</span> SUMMER
+          </h1>
+          <h1 className="text-5xl font-Open font-light capitalize text-[#121212]">
+            FAVORITES
+          </h1>
+
+          <p>You’ll always be in fashion with our collection of clothing</p>
+          <button className="bg-black text-white px-5 py-3 uppercase text-sm">
+            Shop our COLLECTIONS
+          </button>
+        </div>
+      </div>
     </div>
   );
 };

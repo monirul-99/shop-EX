@@ -7,7 +7,7 @@ import AllSellersCard from "./AllSellersCard";
 
 const AllSeller = () => {
   const { user } = useContext(AuthContext);
-  const url = `https://shop-ex-server.vercel.app/all-seller`;
+  const url = `http://localhost:5000/all-seller`;
 
   const {
     data: allSellers = [],
@@ -26,7 +26,7 @@ const AllSeller = () => {
   }
 
   const handleVerify = (id) => {
-    fetch(`https://shop-ex-server.vercel.app/verify-update/${id}`, {
+    fetch(`http://localhost:5000/verify-update/${id}`, {
       method: "PUT",
     })
       .then((res) => res.json())

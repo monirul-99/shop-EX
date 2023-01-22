@@ -4,7 +4,7 @@ import AllBuyerCard from "./AllBuyerCard";
 const AllBuyers = () => {
   const [buyer, setBuyer] = useState([]);
   useEffect(() => {
-    fetch("https://shop-ex-server.vercel.app/all-buyers-get")
+    fetch("http://localhost:5000/all-buyers-get")
       .then((res) => res.json())
       .then((data) => setBuyer(data));
   }, []);

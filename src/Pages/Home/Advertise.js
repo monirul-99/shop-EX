@@ -15,7 +15,7 @@ const Advertise = () => {
   const [reportModalX, setReportModal] = useState();
   const { user } = useContext(AuthContext);
 
-  const url = `https://shop-ex-server.vercel.app/advertise-products`;
+  const url = `http://localhost:5000/advertise-products`;
 
   const {
     data: categoriesData = [],
@@ -34,7 +34,7 @@ const Advertise = () => {
   }
 
   return (
-    <div className="container mx-auto bg-white text-black px-4 pt-12">
+    <div className="bg-white text-black px-4 pt-12">
       {categoriesData.length > 0 && (
         <div className="font-Babes text-4xl tracking-wide border-l-4 border-red-400 mt-0 lg:mt-10">
           <h1 className="px-3 text-[21px]">Popular Item in </h1>

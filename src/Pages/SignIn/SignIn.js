@@ -30,7 +30,7 @@ const SignIn = () => {
   // const userSaveDB = (email, name, image, position) => {
   //   const mans = { name, email, image, position: position };
 
-  //   fetch("https://shop-ex-server.vercel.app/users", {
+  //   fetch("http://localhost:5000/users", {
   //     method: "POST",
   //     headers: {
   //       "content-type": "application/json",
@@ -61,7 +61,7 @@ const SignIn = () => {
 
   const verifyJWT = (email) => {
     console.log(email);
-    fetch(`https://shop-ex-server.vercel.app/jwt?email=${email}`)
+    fetch(`http://localhost:5000/jwt?email=${email}`)
       .then((res) => res.json())
       .then((data) => {
         if (data.accessToken) {
@@ -72,11 +72,11 @@ const SignIn = () => {
   };
   return (
     <div>
-      <div className="flex justify-center items-center h-screen  bg-gray-200 container mx-auto">
+      <div className="flex justify-center items-center bg-gray-200 py-28">
         <div className="flex justify-center items-center">
           <div className="flex flex-col max-w-md p-6  sm:p-10 bg-gray-100 text-gray-900 lg:w-[550px]">
             <div className="mb-8 space-y-5">
-              <h1 className="text-4xl font-bold">Sign Ip</h1>
+              <h1 className="text-4xl font-bold">Sign In</h1>
             </div>
             <form
               onSubmit={handleSubmit}

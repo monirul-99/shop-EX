@@ -7,6 +7,7 @@ import Products from "./Products";
 
 const CategoriesRouteById = () => {
   const data = useLoaderData();
+  console.log("products", data);
   const [categoriesName, setCategoriesName] = useState("");
   const [reportCloseModal, setReportCloseModal] = useState(null);
   const [modalOpenClose, setModalOpenClose] = useState(null);
@@ -14,7 +15,7 @@ const CategoriesRouteById = () => {
   const { data: dataX = [], refetch } = useQuery({
     queryKey: ["doctors"],
     queryFn: async () =>
-      fetch(`https://shop-ex-server.vercel.app/all-categories/:id`, {
+      fetch(`http://localhost:5000/all-categories/:id`, {
         headers: {
           authorization: `bearer ${localStorage.getItem("access-token")}`,
         },
@@ -22,10 +23,12 @@ const CategoriesRouteById = () => {
   });
 
   return (
-    <div className="container mx-auto bg-[#9DD5FF] text-black pt-10">
-      <div className=" w-[90%] mx-auto">
-        <h1 className="font-Ubuntu text-3xl -mb-4">Products For {}</h1>
-        <div className="grid lg:grid-cols-4 gap-10 py-16">
+    <div className="bg-[#F6F6F6] text-black pt-10">
+      <div className="container mx-auto">
+        <h1 className="font-Ubuntu text-3xl -mb-4 text-center">
+          {data?.length} Products
+        </h1>
+        <div className="grid lg:grid-cols-5 gap-10 py-16">
           {data.map((product, inx) => (
             <Products
               key={inx}

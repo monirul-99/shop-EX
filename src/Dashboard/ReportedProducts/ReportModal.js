@@ -14,7 +14,7 @@ const ReportModal = ({ setModalOpenCloseTwo, setReportCloseModal }) => {
     const img = user?.photoURL;
     const report = { name, reportText, img, time };
 
-    fetch(`https://shop-ex-server.vercel.app/add-report`, {
+    fetch(`http://localhost:5000/add-report`, {
       method: "POST",
       headers: {
         "content-type": "application/json",

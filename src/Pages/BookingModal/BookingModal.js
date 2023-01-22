@@ -44,7 +44,7 @@ const BookingModal = ({
       email,
       location,
     };
-    fetch(`https://shop-ex-server.vercel.app/orders-products`, {
+    fetch(`http://localhost:5000/orders-products`, {
       method: "POST",
       headers: {
         "content-type": "application/json",

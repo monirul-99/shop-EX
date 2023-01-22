@@ -1,132 +1,110 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { FaFacebookF, FaTwitter, FaTelegramPlane } from "react-icons/fa";
+import { FaPhoneAlt } from "react-icons/fa";
+import { IoMdMailOpen } from "react-icons/io";
+import { RiFacebookLine, RiLinkedinLine, RiTwitterLine } from "react-icons/ri";
+import { IoLogoInstagram } from "react-icons/io5";
 import { IconContext } from "react-icons";
+import NewsLetter from "../Pages/NewsLetter/NewsLetter";
 
 const Footer = () => {
   return (
-    <div className="bg-gray-900 mx-auto container">
-      <div className="px-4 pt-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
-        <div className="grid row-gap-10 mb-8 lg:grid-cols-6">
-          <div className="grid grid-cols-2 gap-5 row-gap-8 lg:col-span-4 md:grid-cols-4">
-            <div>
-              <Link className="font-medium tracking-wide text-gray-300">
-                Top Categories
-              </Link>
-              <ul className="mt-2 space-y-2">
-                <li>
-                  <Link
-                    to="/blog"
-                    className="text-gray-500 transition-colors duration-300 hover:text-deep-purple-accent-200"
-                  >
-                    Blogs
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/shop"
-                    className="text-gray-500 transition-colors duration-300 hover:text-deep-purple-accent-200"
-                  >
-                    Shop
-                  </Link>
-                </li>
-                <li>
-                  <Link className="text-gray-500 transition-colors duration-300 hover:text-deep-purple-accent-200">
-                    Coming
-                  </Link>
-                </li>
-                <li>
-                  <Link className="text-gray-500 transition-colors duration-300 hover:text-deep-purple-accent-200">
-                    Coming
-                  </Link>
-                </li>
-              </ul>
-            </div>
+    <>
+      <NewsLetter />
+      <div className="bg-[#F2F3F5] pt-12">
+        <div className="flex justify-between container mx-auto font-Libre mb-16 py-10 ">
+          <aside className="">
+            <h1 className="text-3xl uppercase text-black font-semibold mb-5">
+              Shop-EX
+            </h1>
+            <p className="text-[16px] text-[#121212] mb-5">
+              Our company is dedicated to creating unique and <br /> comfortable
+              clothing for men and women.
+            </p>
 
-            <div>
-              <p className="font-medium tracking-wide text-gray-300">
-                Business
-              </p>
-              <ul className="mt-2 space-y-2">
-                <li>
-                  <a
-                    href="/"
-                    className="text-gray-500 transition-colors duration-300 hover:text-deep-purple-accent-200"
-                  >
-                    Infopreneur
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/"
-                    className="text-gray-500 transition-colors duration-300 hover:text-deep-purple-accent-200"
-                  >
-                    Personal
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/"
-                    className="text-gray-500 transition-colors duration-300 hover:text-deep-purple-accent-200"
-                  >
-                    Wiki
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="/"
-                    className="text-gray-500 transition-colors duration-300 hover:text-deep-purple-accent-200"
-                  >
-                    Forum
-                  </a>
-                </li>
-              </ul>
+            <div className="flex items-center text-[14px] space-x-3 mb-3">
+              <IconContext.Provider value={{ size: 16 }}>
+                <FaPhoneAlt />
+              </IconContext.Provider>
+              <p>Call Us : +880 1780082914</p>
             </div>
-          </div>
-          <div className="md:max-w-md lg:col-span-2 py-8">
-            <span className="text-base font-medium tracking-wide text-gray-300">
-              Subscribe for updates
-            </span>
-            <form className="flex flex-col mt-4 md:flex-row">
-              <input
-                placeholder="Email"
-                required
-                type="text"
-                className="flex-grow w-full h-12 px-4 mb-3 transition duration-200 bg-white border border-gray-300 rounded shadow-sm appearance-none md:mr-2 md:mb-0 focus:border-deep-purple-accent-400 focus:outline-none focus:shadow-outline"
-              />
-              <button type="submit" className="btn btn-accent px-3 rounded-sm ">
-                Subscribe
-              </button>
-            </form>
-            <p className="mt-4 text-sm text-gray-500">
-              An exciting place for the whole family to shop.Get what you eye
-            </p>
-          </div>
+            <div className="flex items-center text-[14px] space-x-3">
+              <IconContext.Provider value={{ size: 19 }}>
+                <IoMdMailOpen />
+              </IconContext.Provider>
+              <p>sohelmdmonirulislam@gmail.com</p>
+            </div>
+          </aside>
+          <aside className="">
+            <h1 className="text-[16px] uppercase text-[#121212] leading-4 font-semibold">
+              Company
+            </h1>
+
+            <div className="text-[14px] text-[#797B7E] space-y-3 mt-4">
+              <p>Delivery</p>
+              <p>Refund Policy</p>
+              <p>About Us</p>
+              <p>Contact Us</p>
+              <p>Terms and conditions</p>
+            </div>
+          </aside>
+          <aside className="">
+            <h1 className="text-[16px] uppercase text-[#121212] leading-4 font-semibold">
+              Information
+            </h1>
+            <div className="text-[14px] text-[#797B7E] space-y-3 mt-4">
+              <p>FAQ's</p>
+              <p>Terms</p>
+              <p>Delivery Info</p>
+              <p>Refund Policy</p>
+              <p>Size Guide</p>
+            </div>
+          </aside>
+          <aside className="">
+            <h1 className="text-[16px] uppercase text-[#121212] leading-4 font-semibold">
+              Orders
+            </h1>
+            <div className="text-[14px] text-[#797B7E] space-y-3 mt-4">
+              <p>My Account</p>
+              <p>Orders</p>
+              <p>View Cart</p>
+              <p>Wishlist</p>
+              <p>Checkout</p>
+            </div>
+          </aside>
         </div>
-        <div className="flex flex-col justify-between pt-5 pb-10 border-t border-gray-800 sm:flex-row">
-          <p className="text-sm text-gray-500">
-            © Copyright 2022 SHOP-EX Inc. All rights reserved.
-          </p>
-          <div className="flex items-center mt-4 space-x-4 sm:mt-0">
-            <p className="border rounded-full bg-white p-1">
-              <IconContext.Provider value={{ size: 22, color: "#00acee" }}>
-                <FaTelegramPlane />
-              </IconContext.Provider>
+
+        <div className="container mx-auto flex justify-between font-Libre py-3 border-t">
+          <aside className="flex items-center">
+            <p className="text-sm">
+              © 2023 - E-commerce Created by Monirul Islam
             </p>
-            <p className="border rounded-full bg-white p-1">
-              <IconContext.Provider value={{ size: 22, color: "#00acee" }}>
-                <FaTwitter />
+          </aside>
+          <aside className="flex items-center space-x-5">
+            <aside className="bg-gray-300 w-8 h-8 rounded-full flex items-center justify-center">
+              <IconContext.Provider value={{ size: 17, color: "#395692 " }}>
+                <RiFacebookLine />
               </IconContext.Provider>
-            </p>
-            <p className="border rounded-full bg-white p-1">
-              <IconContext.Provider value={{ size: 22, color: "#00acee" }}>
-                <FaFacebookF />
+            </aside>
+            <div className="bg-gray-300 w-8 h-8 rounded-full flex items-center justify-center">
+              <IconContext.Provider value={{ size: 17, color: "#C02E7F" }}>
+                <IoLogoInstagram />
               </IconContext.Provider>
-            </p>
-          </div>
+            </div>
+            <div className="bg-gray-300 w-8 h-8 rounded-full flex items-center justify-center">
+              <IconContext.Provider value={{ size: 17, color: "#006EAB" }}>
+                <RiLinkedinLine />
+              </IconContext.Provider>
+            </div>
+            <div className="bg-gray-300 w-8 h-8 rounded-full flex items-center justify-center">
+              <IconContext.Provider value={{ size: 17, color: "#00acee " }}>
+                <RiTwitterLine />
+              </IconContext.Provider>
+            </div>
+          </aside>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

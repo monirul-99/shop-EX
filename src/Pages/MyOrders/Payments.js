@@ -14,24 +14,26 @@ const Payment = () => {
     return <Spinner />;
   }
   return (
-    <div className="container mx-auto bg-gray-200 text-black py-16">
-      <div className="font-Babes text-4xl tracking-wide border-l-8 border-red-400 mb-12 w-[90%] lg:w-3/5 mx-auto py-5">
-        <h1 className="px-3 text-[21px] text-black">
-          Payment for {""}
-          <span className="text-red-400 tracking-widest">
-            {productsName}
-          </span>{" "}
-        </h1>
-        <h1 className="px-3 text-red-400">
-          please pay <span className="text-black">for your Shoes</span>
-        </h1>
+    <section className="bg-gray-200">
+      <div className="container mx-auto  text-black py-16">
+        <div className="font-Babes text-4xl tracking-wide border-l-8 border-red-400 mb-12 w-[90%] lg:w-3/5 mx-auto py-5">
+          <h1 className="px-3 text-[21px] text-black">
+            Payment for {""}
+            <span className="text-red-400 tracking-widest">
+              {productsName}
+            </span>{" "}
+          </h1>
+          <h1 className="px-3 text-red-400">
+            please pay <span className="text-black">for your Shoes</span>
+          </h1>
+        </div>
+        <div className="mx-auto lg:w-3/5 bg-white px-10 shadow-lg rounded-md w-[90%]">
+          <Elements stripe={stripePromise}>
+            <CheckoutForm products={products} />
+          </Elements>
+        </div>
       </div>
-      <div className="mx-auto lg:w-3/5 bg-white px-10 shadow-lg rounded-md w-[90%]">
-        <Elements stripe={stripePromise}>
-          <CheckoutForm products={products} />
-        </Elements>
-      </div>
-    </div>
+    </section>
   );
 };
 

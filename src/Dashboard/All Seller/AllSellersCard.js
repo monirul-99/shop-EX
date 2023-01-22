@@ -8,7 +8,7 @@ const AllSellersCard = ({ seller, refetch, handleVerify }) => {
   const { user } = useContext(AuthContext);
 
   const handleUserDelete = (id) => {
-    fetch(`https://shop-ex-server.vercel.app/all-seller/${id}`, {
+    fetch(`http://localhost:5000/all-seller/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())

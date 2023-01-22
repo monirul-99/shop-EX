@@ -16,6 +16,7 @@ import Payment from "../Pages/MyOrders/Payments";
 import Shop from "../Pages/Shop/Shop";
 import SignIn from "../Pages/SignIn/SignIn";
 import SignUp from "../Pages/SignUp/SignUp";
+import WishList from "../Pages/WishList/WishList";
 import PrivateRoute from "./PrivateRauter";
 
 export const Router = createBrowserRouter([
@@ -49,6 +50,10 @@ export const Router = createBrowserRouter([
         element: <Shop />,
       },
       {
+        path: "/myWishlist",
+        element: <WishList />,
+      },
+      {
         path: "/myOrders",
         element: (
           <PrivateRoute>
@@ -59,9 +64,7 @@ export const Router = createBrowserRouter([
       {
         path: "/all-categories/:id",
         loader: ({ params }) =>
-          fetch(
-            `https://shop-ex-server.vercel.app/all-categories/${params.id}`
-          ),
+          fetch(`http://localhost:5000/all-categories/${params.id}`),
         element: (
           <PrivateRoute>
             <CategoriesRouteById />
@@ -71,9 +74,7 @@ export const Router = createBrowserRouter([
       {
         path: "/categories-search/:id",
         loader: ({ params }) =>
-          fetch(
-            `https://shop-ex-server.vercel.app/categories-search/${params.id}`
-          ),
+          fetch(`http://localhost:5000/categories-search/${params.id}`),
         element: (
           <PrivateRoute>
             <Payment />
