@@ -1,61 +1,14 @@
 import React, { useContext } from "react";
-import toast from "react-hot-toast";
 import { IconContext } from "react-icons";
 import { RiHeart2Line } from "react-icons/ri";
 import { AuthContext } from "../../Context/UserContext";
 import Slider from "./Slider";
 
-const BookingModal = ({ modalData, refetch, setModalOpenClose }) => {
-  const { user } = useContext(AuthContext);
+const BookingModal = ({ modalData, setModalOpenClose }) => {
+  const { user, shoppingBooking } = useContext(AuthContext);
 
-  const {
-    useDuration,
-    time,
-    title,
-    reported,
-    status,
-    OriginalPrice,
-    img,
-    owner,
-    location,
-    price,
-    condition,
-    describe,
-  } = modalData;
+  const { title, status, img, price, describe } = modalData;
 
-  const shoppingBooking = (event) => {
-    event.preventDefault();
-    const form = event.target;
-    const name = form.productsName.value;
-    const price = form.price.value;
-    const orderUser = form.orderUser.value;
-    const phone = form.phone.value;
-    const email = form.email.value;
-    const location = form.location.value;
-    const orders = {
-      productsName: name,
-      img,
-      price,
-      describe,
-      orderUser,
-      phone,
-      email,
-      location,
-    };
-    fetch(`http://localhost:5000/orders-products`, {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(orders),
-    })
-      .then((res) => res.json())
-      .then(() => {
-        toast.success(`${user?.displayName} added successful!`);
-        setModalOpenClose(null);
-        refetch();
-      });
-  };
   return (
     <>
       <input
@@ -109,10 +62,10 @@ const BookingModal = ({ modalData, refetch, setModalOpenClose }) => {
             </aside>
 
             <button
-              onClick={shoppingBooking}
+              onClick={() => shoppingBooking(modalData, setModalOpenClose)}
               className="py-3 mb-5 text-[17px] w-full max-w-xs text-center bg-black text-white"
             >
-              Add To Cart
+              Add To Carts
             </button>
             <button
               onClick={shoppingBooking}

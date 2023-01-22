@@ -15,7 +15,7 @@ const Products = ({
   setReportModalX,
   setReportCloseModal,
 }) => {
-  // const { user } = useContext(AuthContext);
+  const { shoppingBookingTwo } = useContext(AuthContext);
 
   const [verifyChecker, setVerifyChecker] = useState(false);
   const {
@@ -42,7 +42,7 @@ const Products = ({
       });
   }, [email]);
 
-  console.log("Verify Check", verifyChecker);
+  // console.log("Verify Check", verifyChecker);
   return (
     // <div className="flex justify-center items-center font-Ubuntu">
     //   <div className="bg-white rounded-md shadow-lg transform transition duration-500 hover:scale-105 hover:shadow-2xl">
@@ -260,7 +260,10 @@ const Products = ({
 
         <div className="absolute bottom-2 w-full">
           <aside className="flex items-center justify-center space-x-2 visibleCart">
-            <div className="cursor-pointer w-10 h-10 bg-black duration-500 hover:bg-[#797B7E] p-3 rounded-full flex items-center justify-center">
+            <div
+              onClick={() => shoppingBookingTwo(product)}
+              className="cursor-pointer w-10 h-10 bg-black duration-500 hover:bg-[#797B7E] p-3 rounded-full flex items-center justify-center"
+            >
               <IconContext.Provider value={{ size: 20, color: "white" }}>
                 <RiShoppingCartLine />
               </IconContext.Provider>

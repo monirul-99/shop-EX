@@ -7,7 +7,7 @@ import Products from "./Products";
 
 const CategoriesRouteById = () => {
   const data = useLoaderData();
-  console.log("products", data);
+  // console.log("products", data);
   const [categoriesName, setCategoriesName] = useState("");
   const [reportCloseModal, setReportCloseModal] = useState(null);
   const [modalOpenClose, setModalOpenClose] = useState(null);

@@ -21,18 +21,75 @@ const UserContext = ({ children }) => {
   const [comments, setComments] = useState([]);
   const [updateGet, setUpdateGet] = useState("");
 
+  //Add to cart with modal func
+  const shoppingBooking = (modalData, setModalOpenClose) => {
+    setUpdateGet("");
+    const { title, img, price, describe, location } = modalData;
+    const orders = {
+      productsName: title,
+      img,
+      price,
+      describe,
+      orderUser: user?.displayName,
+      email: user?.email,
+      location,
+    };
+    fetch(`http://localhost:5000/orders-products`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(orders),
+    })
+      .then((res) => res.json())
+      .then(() => {
+        toast.success(`${user?.displayName} added successful!`);
+        setModalOpenClose(null);
+        setUpdateGet("Update Value");
+      });
+  };
+
+  //Add to cart func
+  const shoppingBookingTwo = (modalData) => {
+    setUpdateGet("");
+    const { title, img, price, describe, location } = modalData;
+    const orders = {
+      productsName: title,
+      img,
+      price,
+      describe,
+      orderUser: user?.displayName,
+      email: user?.email,
+      location,
+    };
+    fetch(`http://localhost:5000/orders-products`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(orders),
+    })
+      .then((res) => res.json())
+      .then(() => {
+        toast.success(`${user?.displayName} added successful!`);
+        setUpdateGet("Update Value");
+      });
+  };
+
   useEffect(() => {
     fetch(`http://localhost:5000/orders-get-email/${user?.email}`)
       .then((res) => res.json())
       .then((data) => setMyOrders(data));
   }, [user?.email, updateGet]);
 
+  //Comments Get Func
   useEffect(() => {
     fetch(`http://localhost:5000/comments-data`)
       .then((res) => res.json())
       .then((data) => setComments(data));
   }, []);
 
+  //MyOrders Delete Items Func
   const orderProductsDelete = (id) => {
     setUpdateGet("");
     fetch(`http://localhost:5000/order-products/${id}`, {
@@ -106,6 +163,8 @@ const UserContext = ({ children }) => {
     myOrders,
     orderProductsDelete,
     comments,
+    shoppingBooking,
+    shoppingBookingTwo,
   };
   return (
     <div>
