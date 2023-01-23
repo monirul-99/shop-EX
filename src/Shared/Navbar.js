@@ -3,20 +3,17 @@ import { Link } from "react-router-dom";
 import useAdmin from "./useAdmin";
 import useSeller from "./useSeller";
 import {
-  RiFacebookFill,
   RiHeart2Line,
-  RiInstagramLine,
-  RiLinkedinLine,
   RiPhoneFill,
   RiSearchLine,
   RiShoppingCartLine,
-  RiTwitterLine,
   RiUser6Line,
-  RiWhatsappLine,
 } from "react-icons/ri";
 import { IoIosArrowDown } from "react-icons/io";
 import { AuthContext } from "../Context/UserContext";
 import { IconContext } from "react-icons";
+import "../Pages/MyOrders/Orders.css";
+import MyOrders from "../Pages/MyOrders/myOrders";
 
 const Navbar = () => {
   const { logout, user, myOrders } = useContext(AuthContext);
@@ -226,7 +223,7 @@ const Navbar = () => {
             </Link>
             <aside className="flex gap-10 justify-center items-center text-[14px]">
               <Link className="hidden lg:block uppercase" to="/home ">
-                new
+                Home
               </Link>
               <Link
                 className="uppercase space-x-1 flex items-center"
@@ -251,7 +248,7 @@ const Navbar = () => {
                 </aside>
               </Link>
               <Link className="uppercase  hidden lg:block" to="/blog">
-                home
+                new
               </Link>
               <Link className="uppercase  hidden lg:block" to="/blog">
                 about
@@ -380,11 +377,23 @@ const Navbar = () => {
                   <RiHeart2Line />
                 </IconContext.Provider>
               </Link>
-              <Link to="/myOrders">
+              <Link>
                 <div className="relative">
-                  <IconContext.Provider value={{ size: 23, color: "#ABADAF" }}>
-                    <RiShoppingCartLine />
-                  </IconContext.Provider>
+                  <div className="dropdown dropdown-end">
+                    <label tabIndex={0} className="cursor-pointer shadow-lg">
+                      <IconContext.Provider
+                        value={{ size: 23, color: "#ABADAF" }}
+                      >
+                        <RiShoppingCartLine />
+                      </IconContext.Provider>
+                    </label>
+                    <div
+                      tabIndex={0}
+                      className="w-96 dropdown-content border-t bg-white mt-[43px]"
+                    >
+                      <MyOrders />
+                    </div>
+                  </div>
                   <aside className="absolute -top-3 -right-2 bg-[#2a355c99] w-4 h-4 rounded-full text-white flex items-center justify-center">
                     <p className="text-[12px]">{myOrders?.length}</p>
                   </aside>
