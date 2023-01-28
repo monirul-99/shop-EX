@@ -202,8 +202,8 @@ const SignUp = () => {
                 />
               </div>
 
-              <fieldset class="flex flex-wrap gap-3">
-                <legend class="sr-only">Color</legend>
+              <fieldset className="flex flex-wrap gap-3">
+                <legend className="sr-only">Color</legend>
 
                 <div>
                   <input
@@ -211,14 +211,14 @@ const SignUp = () => {
                     name="ColorOption"
                     value="Other"
                     id="ColorRed"
-                    class="peer hidden"
+                    className="peer hidden"
                   />
 
                   <label
                     for="ColorRed"
-                    class="flex cursor-pointer items-center justify-center rounded-md border border-gray-100 py-2 px-3 text-gray-900 hover:border-gray-200 peer-checked:border-blue-500 peer-checked:bg-blue-500 peer-checked:text-white"
+                    className="flex cursor-pointer items-center justify-center rounded-md border border-gray-100 py-2 px-3 text-gray-900 hover:border-gray-200 peer-checked:border-blue-500 peer-checked:bg-blue-500 peer-checked:text-white"
                   >
-                    <p class="text-sm font-medium">User</p>
+                    <p className="text-sm font-medium">User</p>
                   </label>
                 </div>
                 <div>
@@ -227,14 +227,14 @@ const SignUp = () => {
                     name="ColorOption"
                     value="Seller"
                     id="ColorBlack"
-                    class="peer hidden"
+                    className="peer hidden"
                   />
 
                   <label
                     for="ColorBlack"
-                    class="flex cursor-pointer items-center justify-center rounded-md border border-gray-100 py-2 px-3 text-gray-900 hover:border-gray-200 peer-checked:border-blue-500 peer-checked:bg-blue-500 peer-checked:text-white"
+                    className="flex cursor-pointer items-center justify-center rounded-md border border-gray-100 py-2 px-3 text-gray-900 hover:border-gray-200 peer-checked:border-blue-500 peer-checked:bg-blue-500 peer-checked:text-white"
                   >
-                    <p class="text-sm font-medium">Seller</p>
+                    <p className="text-sm font-medium">Seller</p>
                   </label>
                 </div>
               </fieldset>

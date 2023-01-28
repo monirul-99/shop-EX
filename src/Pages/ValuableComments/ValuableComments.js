@@ -9,7 +9,7 @@ import { AuthContext } from "../../Context/UserContext";
 
 export default function CommentsCard() {
   const { comments } = useContext(AuthContext);
-  console.log(comments);
+  // console.log(comments);
   return (
     <>
       <Swiper
@@ -27,7 +27,7 @@ export default function CommentsCard() {
         className="mySwiper"
       >
         {comments?.map((comment, inx) => (
-          <SwiperSlide>
+          <SwiperSlide key={inx}>
             <div className="">
               <div className="">
                 <p className="text-center py-5">

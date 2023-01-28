@@ -3,13 +3,13 @@ import React from "react";
 const Blogs = () => {
   return (
     <>
-      <section className="w-[60%] mx-auto mt-32">
+      <section className="lg:w-[60%] mx-auto mt-32 px-3 lg:px-0">
         <h1 className="text-[32px] font-Josefin leading-10 text-[#121212] font-semibold">
           Fresh news from <br /> our blog
         </h1>
       </section>
-      <section className="w-[60%] mx-auto flex items-start justify-between gap-8 py-10 mb-12">
-        <div>
+      <section className="lg:w-[60%] mx-auto flex flex-col lg:flex-row items-start justify-between gap-8 py-10 mb-12 px-3 lg:px-0">
+        <div data-aos="fade-up" data-aos-duration="2000">
           <aside>
             <img
               src="https://cdn.shopify.com/s/files/1/0551/8001/articles/post2_720x.jpg?v=1615415810"
@@ -38,7 +38,7 @@ const Blogs = () => {
           </aside>
         </div>
 
-        <div>
+        <div data-aos="fade-up" data-aos-duration="2000">
           <aside>
             <img
               src="https://cdn.shopify.com/s/files/1/0551/8001/articles/post6_720x.jpg?v=1630427719"
@@ -68,7 +68,7 @@ const Blogs = () => {
           </aside>
         </div>
 
-        <div>
+        <div data-aos="fade-up" data-aos-duration="2000">
           <aside>
             <img
               src="https://cdn.shopify.com/s/files/1/0551/8001/articles/post7_720x.jpg?v=1630427995"

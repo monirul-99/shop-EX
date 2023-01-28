@@ -7,7 +7,7 @@ const ReportedProducts = () => {
   const {
     data: productsReport = [],
     isLoading,
-    refetch,
+    // refetch,
   } = useQuery({
     queryKey: ["bookings"],
     queryFn: async () => {

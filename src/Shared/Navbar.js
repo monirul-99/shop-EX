@@ -1,8 +1,11 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import useAdmin from "./useAdmin";
-import useSeller from "./useSeller";
+import { Dialog, Transition } from "@headlessui/react";
+import { Fragment, useState } from "react";
+// import useAdmin from "./useAdmin";
+// import useSeller from "./useSeller";
 import {
+  RiBarChartHorizontalLine,
   RiHeart2Line,
   RiPhoneFill,
   RiSearchLine,
@@ -13,15 +16,35 @@ import { IoIosArrowDown } from "react-icons/io";
 import { AuthContext } from "../Context/UserContext";
 import { IconContext } from "react-icons";
 import "../Pages/MyOrders/Orders.css";
-import MyOrders from "../Pages/MyOrders/myOrders";
+import MyOrders from "../Pages/MyOrders/MyOrders";
+import WishList from "../Pages/WishList/WishList";
 
 const Navbar = () => {
-  const { logout, user, myOrders } = useContext(AuthContext);
-  const [isAdmin] = useAdmin(user?.email);
-  const [isSeller] = useSeller(user?.email);
+  const { user, myOrders, wishlistData, addition } = useContext(AuthContext);
+  // const [isAdmin] = useAdmin(user?.email);
+  // const [isSeller] = useSeller(user?.email);
+  let [isOpen, setIsOpen] = useState(false);
+  let [isOpenWish, setIsOpenWish] = useState(false);
+
+  function closeModal() {
+    setIsOpen(false);
+  }
+
+  function openModal() {
+    setIsOpen(true);
+  }
+
+  function closeModalWish() {
+    setIsOpenWish(false);
+  }
+
+  function openModalWish() {
+    setIsOpenWish(true);
+  }
+  // console.log("wish", wishlistData, myOrders);
   return (
     <>
-      <section className="bg-black  hidden lg:block">
+      <section className="bg-black  hidden lg:block relative">
         <div className="h-10 flex justify-between items-center container mx-auto font-Poppins">
           <div className="flex items-center space-x-2">
             <IconContext.Provider value={{ size: 20, color: "white" }}>
@@ -30,59 +53,16 @@ const Navbar = () => {
             <p className="text-white text-[13px]">+880 1780082914</p>
           </div>
           <div className="flex items-center space-x-3">
-            {/* <a
-              href="https://www.linkedin.com/in/monirul99/"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <IconContext.Provider value={{ size: 18, color: "white" }}>
-                <RiLinkedinLine />
-              </IconContext.Provider>
-            </a>
-            <a
-              href="https://twitter.com/MsMonirul"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <IconContext.Provider value={{ size: 17, color: "white" }}>
-                <RiInstagramLine />
-              </IconContext.Provider>
-            </a>{" "}
-            <a
-              href="https://www.facebook.com/moniru.pro"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <IconContext.Provider value={{ size: 18, color: "white" }}>
-                <RiFacebookFill />
-              </IconContext.Provider>
-            </a>
-            <a
-              href="https://www.facebook.com/moniru.pro"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <IconContext.Provider value={{ size: 18, color: "white" }}>
-                <RiWhatsappLine />
-              </IconContext.Provider>
-            </a>
-            <a
-              href="https://www.facebook.com/moniru.pro"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <IconContext.Provider value={{ size: 19, color: "white" }}>
-                <RiTwitterLine />
-              </IconContext.Provider>
-            </a> */}
             <p className="text-[13px] text-white">All week from 9 am to 7 pm</p>
             <p className="h-4 border-r"></p>
-            <p className="text-[13px] text-white">Shop Now</p>
+            <Link to="/shop">
+              <p className="text-[13px] text-white">Shop Now</p>
+            </Link>
           </div>
         </div>
       </section>
-
-      {/* <aside className="flex gap-10 items-center">
+      <div>
+        {/* <aside className="flex gap-10 items-center">
        
         {user?.email && (
           <Link
@@ -214,192 +194,121 @@ const Navbar = () => {
           </div>
         </Link>
       </aside> */}
+      </div>
 
-      <section className="bg-white shadow-sm font-Open text-black  sticky top-0 z-50  hidden lg:block">
+      <section className="bg-white shadow-sm font-Open text-black sticky top-0 z-50">
         <div>
-          <div className="flex justify-between container mx-auto py-8">
-            <Link className="text-4xl font-Josefin font-extralight" to="/">
-              ᔕᕼOᑭ E᙭
-            </Link>
-            <aside className="flex gap-10 justify-center items-center text-[14px]">
-              <Link className="hidden lg:block uppercase" to="/home ">
-                Home
-              </Link>
-              <Link
-                className="uppercase space-x-1 flex items-center"
-                to="/shop"
-              >
-                <p>women's</p>
-                <aside className="-mt-1">
-                  <IconContext.Provider value={{ size: 15 }}>
-                    <IoIosArrowDown />
+          <div className="flex justify-between container mx-auto py-6 px-5 lg:px-0">
+            <div className="flex items-center space-x-3">
+              <label htmlFor="my-drawer-4" className="drawer-button">
+                <aside className="-mt-1 lg:hidden md:hidden">
+                  <IconContext.Provider value={{ size: 25 }}>
+                    <RiBarChartHorizontalLine />
                   </IconContext.Provider>
                 </aside>
-              </Link>
-              <Link
-                className="uppercase space-x-1 flex items-center"
-                to="/blog"
-              >
-                <p>men's</p>
-                <aside className="-mt-1">
-                  <IconContext.Provider value={{ size: 15 }}>
-                    <IoIosArrowDown />
-                  </IconContext.Provider>
-                </aside>
-              </Link>
-              <Link className="uppercase  hidden lg:block" to="/blog">
-                new
-              </Link>
-              <Link className="uppercase  hidden lg:block" to="/blog">
-                about
-              </Link>
-              {/* {user?.email && (
-            <Link className="  uppercase hidden lg:block" to="/myOrders">
-              My Orders
-            </Link>
-          )} */}
-              {/* {isAdmin && (
-            <Link className=" uppercase hidden lg:block" to="/dashboard">
-              Dashboard
-            </Link>
-          )} */}
-              {/* {isSeller && (
-            <Link className="  uppercase hidden lg:block" to="/dashboard">
-              Dashboard
-            </Link>
-          )} */}
-              {/* {!user?.displayName && (
-            <>
-              <Link className="  uppercase hidden lg:block" to="/signIn">
-                Sign In
-              </Link>
-              <Link className="  uppercase hidden lg:block" to="/signUP">
-                Sign Up
-              </Link>
-            </>
-          )} */}
-              {/* {user?.displayName && (
-            <Link onClick={logout} className="  uppercase hidden lg:block">
-              Sign Out
-            </Link>
-          )} */}
-
-              {/* <div className="dropdown">
-              <label
-                tabIndex={0}
-                className="btn btn-ghost btn-circle lg:hidden"
-              >
-                <IconContext.Provider value={{ size: 35 }}>
-                  <HiBars3CenterLeft />
-                </IconContext.Provider>
               </label>
-              <ul
-                tabIndex={0}
-                className="font-Ubuntu space-y-3 uppercase menu menu-compact dropdown-content mt-9 p-2 shadow bg-gray-200  rounded-box w-36 -ml-[310px]"
+
+              <Link
+                className="lg:text-4xl text-[20px] font-Josefin font-extralight"
+                to="/"
               >
-                <li className="font-semibold">
-                  <Link to="/home">HOME</Link>
-                </li>
-                <li className="font-semibold">
-                  <Link to="/shop">SHOP</Link>
-                </li>
-                <li className="font-semibold">
-                  <Link to="/blog">BLOG</Link>
-                </li>
-                {user?.email && (
-                  <li className="font-semibold">
-                    <Link to="/myOrders">My Order</Link>
-                  </li>
-                )}
-                {isAdmin && (
-                  <li className="font-semibold">
-                    <Link to="/dashboard">Dashboard</Link>
-                  </li>
-                )}
-                {isSeller && (
-                  <li className="font-semibold">
-                    <Link to="/dashboard">Dashboard</Link>
-                  </li>
-                )}
-                <li className="relative">
-                  {!user?.displayName && (
-                    <Link
-                      className="font-semibold uppercase block lg:hidden"
-                      to="/signIn"
-                    >
-                      Sign In
-                    </Link>
-                  )}
-                </li>
-                <li>
-                  {!user?.displayName && (
-                    <Link
-                      className="font-semibold uppercase block lg:hidden"
-                      to="/signUP"
-                    >
-                      Sign Up
-                    </Link>
-                  )}
-                </li>
-
-                <li className="">
-                  {user?.displayName && (
-                    <Link
-                      onClick={logout}
-                      className="font-semibold uppercase block lg:hidden absolute bottom-0 border"
-                    >
-                      Sign Out
-                    </Link>
-                  )}
-                </li>
-              </ul>
-            </div> */}
-
-              {/* <Link to="/avatar" className="-ml-5 pt-3 hidden lg:block md:block">
-            <div className="avatar">
-              <div className="w-12 rounded-full ">
-                {user?.photoURL && <img src={user?.photoURL} alt="" />}
-                {!user?.photoURL && (
-                  <IconContext.Provider value={{ size: 40 }}>
-                    <FaRegUserCircle />
-                  </IconContext.Provider>
-                )}
-              </div>
+                <p className="pt-1">ᔕᕼOᑭ E᙭</p>
+              </Link>
             </div>
-          </Link> */}
-            </aside>
+
+            <div className="hidden lg:block">
+              <aside className="flex gap-10 justify-center items-center text-[14px] pt-4">
+                <Link className=" uppercase" to="/home">
+                  Home
+                </Link>
+
+                <div className="dropdown dropdown-bottom cursor-pointer">
+                  <label
+                    tabIndex={0}
+                    className="uppercase space-x-1 flex items-center cursor-pointer"
+                  >
+                    <p>women's</p>
+                    <aside className="-mt-1">
+                      <IconContext.Provider value={{ size: 15 }}>
+                        <IoIosArrowDown />
+                      </IconContext.Provider>
+                    </aside>
+                  </label>
+                  <ul
+                    tabIndex={0}
+                    className="dropdown-content menu p-2 shadow bg-white w-40 mt-[31px]"
+                  >
+                    <li>Sample Item 1</li>
+                    <li>Sample Item 2</li>
+                    <li>Sample Item 3</li>
+                    <li>Sample Item 4</li>
+                    <li>Sample Item 5</li>
+                    <li>Sample Item 6</li>
+                  </ul>
+                </div>
+
+                <div className="dropdown dropdown-bottom cursor-pointer">
+                  <label
+                    tabIndex={0}
+                    className="uppercase space-x-1 flex items-center cursor-pointer"
+                  >
+                    <p>men's</p>
+                    <aside className="-mt-1">
+                      <IconContext.Provider value={{ size: 15 }}>
+                        <IoIosArrowDown />
+                      </IconContext.Provider>
+                    </aside>
+                  </label>
+                  <ul
+                    tabIndex={0}
+                    className="dropdown-content menu p-2 shadow bg-white w-40 mt-[31px]"
+                  >
+                    <li>Sample Item 1</li>
+                    <li>Sample Item 2</li>
+                    <li>Sample Item 3</li>
+                    <li>Sample Item 4</li>
+                    <li>Sample Item 5</li>
+                    <li>Sample Item 6</li>
+                  </ul>
+                </div>
+                <Link className="uppercase  hidden lg:block" to="/shop">
+                  newSHOP
+                </Link>
+                <Link className="uppercase  hidden lg:block" to="/about">
+                  about
+                </Link>
+              </aside>
+            </div>
             <aside className="flex items-center space-x-5">
-              <IconContext.Provider value={{ size: 23, color: "#ABADAF" }}>
-                <RiSearchLine />
-              </IconContext.Provider>
-              <Link to="/myWishlist">
+              <div className="hidden lg:block">
+                <IconContext.Provider value={{ size: 23, color: "#ABADAF" }}>
+                  <RiSearchLine />
+                </IconContext.Provider>
+              </div>
+
+              <button
+                type="button"
+                className="relative"
+                onClick={openModalWish}
+              >
                 <IconContext.Provider value={{ size: 23, color: "#ABADAF" }}>
                   <RiHeart2Line />
                 </IconContext.Provider>
-              </Link>
-              <Link>
-                <div className="relative">
-                  <div className="dropdown dropdown-end">
-                    <label tabIndex={0} className="cursor-pointer shadow-lg">
-                      <IconContext.Provider
-                        value={{ size: 23, color: "#ABADAF" }}
-                      >
-                        <RiShoppingCartLine />
-                      </IconContext.Provider>
-                    </label>
-                    <div
-                      tabIndex={0}
-                      className="w-96 dropdown-content border-t bg-white mt-[43px]"
-                    >
-                      <MyOrders />
-                    </div>
-                  </div>
-                  <aside className="absolute -top-3 -right-2 bg-[#2a355c99] w-4 h-4 rounded-full text-white flex items-center justify-center">
-                    <p className="text-[12px]">{myOrders?.length}</p>
-                  </aside>
-                </div>
-              </Link>
-              <div className="w-9 h-9 rounded-full overflow-hidden  hidden lg:block">
+                <aside className="absolute -top-2 -right-2 bg-[#2a355c99] w-4 h-4 rounded-full text-white flex items-center justify-center">
+                  <p className="text-[12px]">{wishlistData?.length}</p>
+                </aside>
+              </button>
+
+              <button type="button" className="relative" onClick={openModal}>
+                <IconContext.Provider value={{ size: 23, color: "#ABADAF" }}>
+                  <RiShoppingCartLine />
+                </IconContext.Provider>
+                <aside className="absolute -top-2 -right-2 bg-[#2a355c99] w-4 h-4 rounded-full text-white flex items-center justify-center">
+                  <p className="text-[12px]">{myOrders?.length}</p>
+                </aside>
+              </button>
+
+              <div className="w-9 h-9 rounded-full overflow-hidden">
                 {user?.photoURL && <img src={user?.photoURL} alt="" />}
               </div>
               {!user?.photoURL && (
@@ -410,6 +319,132 @@ const Navbar = () => {
             </aside>
           </div>
         </div>
+
+        <Transition appear show={isOpen} as={Fragment}>
+          <Dialog as="div" className="relative z-10" onClose={closeModal}>
+            <Transition.Child
+              as={Fragment}
+              enter="ease-out duration-300"
+              enterFrom="opacity-0"
+              enterTo="opacity-100"
+              leave="ease-in duration-200"
+              leaveFrom="opacity-100"
+              leaveTo="opacity-0"
+            >
+              <div className="fixed inset-0 bg-black bg-opacity-25" />
+            </Transition.Child>
+
+            <div className="fixed top-20 overflow-y-auto">
+              <div className="flex min-h-full items-center justify-end text-center lg:w-96">
+                <Transition.Child
+                  as={Fragment}
+                  enter="ease-out duration-300"
+                  enterFrom="opacity-0 scale-95"
+                  enterTo="opacity-100 scale-100"
+                  leave="ease-in duration-200"
+                  leaveFrom="opacity-100 scale-100"
+                  leaveTo="opacity-0 scale-95"
+                >
+                  <Dialog.Panel className="w-full transform overflow-hidden bg-white p-6 text-left align-middle shadow-xl transition-all">
+                    <Dialog.Title
+                      as="h3"
+                      className="text-lg font-medium leading-6 text-gray-900"
+                    >
+                      <p className="lg:hidden pt-6">
+                        {" "}
+                        Items {myOrders?.length}
+                      </p>
+                    </Dialog.Title>
+                    <div className="mt-2 pt-5">
+                      <MyOrders />
+                    </div>
+
+                    <div className="bg-white rounded-t-3xl border-t py-2">
+                      <aside className="flex items-center justify-between mt-3 pl-3">
+                        <p className="font-Poppins uppercase font-semibold text-slate-800">
+                          Total
+                        </p>
+                        <p className="font-Poppins uppercase font-semibold text-slate-800 pr-3">
+                          $ {addition}
+                        </p>
+                      </aside>
+                      <div className="flex flex-row-reverse items-center justify-between mt-3 pl-3">
+                        <Link to="/payments-page">
+                          <button
+                            type="button"
+                            className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 pr-3"
+                            onClick={closeModal}
+                          >
+                            Checkout Process
+                          </button>
+                        </Link>
+                        <button
+                          type="button"
+                          className="inline-flex justify-center rounded-md border border-transparent border-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                          onClick={closeModal}
+                        >
+                          Close
+                        </button>
+                      </div>
+                    </div>
+                  </Dialog.Panel>
+                </Transition.Child>
+              </div>
+            </div>
+          </Dialog>
+        </Transition>
+
+        <Transition appear show={isOpenWish} as={Fragment}>
+          <Dialog as="div" className="relative z-10" onClose={closeModalWish}>
+            <Transition.Child
+              as={Fragment}
+              enter="ease-out duration-300"
+              enterFrom="opacity-0"
+              enterTo="opacity-100"
+              leave="ease-in duration-200"
+              leaveFrom="opacity-100"
+              leaveTo="opacity-0"
+            >
+              <div className="fixed inset-0 bg-black bg-opacity-25" />
+            </Transition.Child>
+
+            <div className="fixed top-20 overflow-y-auto">
+              <div className="flex min-h-full items-center justify-center text-center lg:w-96">
+                <Transition.Child
+                  as={Fragment}
+                  enter="ease-out duration-300"
+                  enterFrom="opacity-0 scale-95"
+                  enterTo="opacity-100 scale-100"
+                  leave="ease-in duration-200"
+                  leaveFrom="opacity-100 scale-100"
+                  leaveTo="opacity-0 scale-95"
+                >
+                  <Dialog.Panel className="w-full transform overflow-hidden bg-white p-6 text-left align-middle shadow-xl transition-all">
+                    <Dialog.Title
+                      as="h3"
+                      className="text-lg font-medium leading-6 text-gray-900"
+                    >
+                      Wishlist Items
+                    </Dialog.Title>
+                    <div className="mt-2">
+                      <WishList />
+                    </div>
+
+                    <div className="mt-4">
+                      <button
+                        type="button"
+                        className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                        onClick={closeModalWish}
+                      >
+                        Close Now!
+                      </button>
+                    </div>
+                  </Dialog.Panel>
+                </Transition.Child>
+              </div>
+            </div>
+          </Dialog>
+        </Transition>
       </section>
     </>
   );

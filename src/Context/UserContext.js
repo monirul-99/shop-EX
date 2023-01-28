@@ -20,6 +20,17 @@ const UserContext = ({ children }) => {
   const [myOrders, setMyOrders] = useState([]);
   const [comments, setComments] = useState([]);
   const [updateGet, setUpdateGet] = useState("");
+  const [wishlistUpdate, setWishlistUpdateGet] = useState("");
+  const [wishlistData, setWishlistData] = useState("");
+
+  //Modal
+  const [categoriesName, setCategoriesName] = useState("");
+  const [reportCloseModal, setReportCloseModal] = useState(null);
+  const [modalOpenClose, setModalOpenClose] = useState(null);
+
+  const addition = myOrders.reduce((accumulator, object) => {
+    return accumulator + object.price;
+  }, 0);
 
   //Add to cart with modal func
   const shoppingBooking = (modalData, setModalOpenClose) => {
@@ -48,13 +59,12 @@ const UserContext = ({ children }) => {
         setUpdateGet("Update Value");
       });
   };
-
   //Add to cart func
   const shoppingBookingTwo = (modalData) => {
     setUpdateGet("");
     const { title, img, price, describe, location } = modalData;
     const orders = {
-      productsName: title,
+      title,
       img,
       price,
       describe,
@@ -75,7 +85,41 @@ const UserContext = ({ children }) => {
         setUpdateGet("Update Value");
       });
   };
+  //wishlist  func
+  const wishlistBooking = (modalData) => {
+    setWishlistUpdateGet("");
+    const { title, img, price, describe, location } = modalData;
+    const orders = {
+      title,
+      img,
+      price,
+      describe,
+      orderUser: user?.displayName,
+      email: user?.email,
+      location,
+    };
+    fetch(`http://localhost:5000/wishlist-products`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(orders),
+    })
+      .then((res) => res.json())
+      .then(() => {
+        toast.success(`${user?.displayName} Wishlist  added successful!`);
+        setWishlistUpdateGet("Update Value");
+      });
+  };
 
+  //wishList data request
+  useEffect(() => {
+    fetch(`http://localhost:5000/wishlist-get-email/${user?.email}`)
+      .then((res) => res.json())
+      .then((data) => setWishlistData(data));
+  }, [user?.email, wishlistUpdate]);
+
+  //myOrders data request
   useEffect(() => {
     fetch(`http://localhost:5000/orders-get-email/${user?.email}`)
       .then((res) => res.json())
@@ -101,6 +145,23 @@ const UserContext = ({ children }) => {
           toast.success(`Hello, ${user?.displayName} ! Your Products Removed`);
           // refetch();
           setUpdateGet("Update");
+        }
+      });
+  };
+  //WishList Delete Items Func
+  const wishlistProductsDelete = (id) => {
+    setWishlistUpdateGet("");
+    fetch(`http://localhost:5000/wishlist-products/${id}`, {
+      method: "DELETE",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.deletedCount > 0) {
+          toast.success(
+            `Hello, ${user?.displayName} ! Wishlist Products Removed`
+          );
+          // refetch();
+          setWishlistUpdateGet("Update");
         }
       });
   };
@@ -165,6 +226,16 @@ const UserContext = ({ children }) => {
     comments,
     shoppingBooking,
     shoppingBookingTwo,
+    wishlistBooking,
+    setCategoriesName,
+    setModalOpenClose,
+    setReportCloseModal,
+    modalOpenClose,
+    categoriesName,
+    reportCloseModal,
+    wishlistData,
+    wishlistProductsDelete,
+    addition,
   };
   return (
     <div>

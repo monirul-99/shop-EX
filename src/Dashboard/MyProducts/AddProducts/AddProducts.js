@@ -5,6 +5,7 @@ import { AuthContext } from "../../../Context/UserContext";
 
 const AddProducts = () => {
   const [error, setError] = useState("");
+  console.log(setError);
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
   const handleAddProducts = (event) => {

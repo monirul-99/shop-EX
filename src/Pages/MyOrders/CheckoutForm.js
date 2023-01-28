@@ -2,7 +2,7 @@ import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Context/UserContext";
 
-const CheckoutForm = ({ products }) => {
+const CheckoutForm = ({ price }) => {
   const stripe = useStripe();
   const elements = useElements();
   const { user } = useContext(AuthContext);
@@ -11,14 +11,13 @@ const CheckoutForm = ({ products }) => {
   const [processing, setProcessing] = useState(false);
   const [transactionID, setTransactionId] = useState("");
   const [clientSecret, setClientSecret] = useState("");
-  const { productsName, price, _id, img } = products;
 
   useEffect(() => {
     fetch("http://localhost:5000/create-payment-intent", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        authorization: `bearer ${localStorage.getItem("access-token")}`,
+        // authorization: `bearer ${localStorage.getItem("access-token")}`,
       },
       body: JSON.stringify({ price }),
     })
@@ -38,7 +37,7 @@ const CheckoutForm = ({ products }) => {
       return;
     }
 
-    const { error, paymentMethod } = await stripe.createPaymentMethod({
+    const { error } = await stripe.createPaymentMethod({
       type: "card",
       card,
     });
@@ -56,7 +55,7 @@ const CheckoutForm = ({ products }) => {
         payment_method: {
           card: card,
           billing_details: {
-            name: productsName,
+            // name: productsName,
             email: user?.email,
           },
         },
@@ -71,77 +70,92 @@ const CheckoutForm = ({ products }) => {
         price,
         transactionId: paymentIntent.id,
         email: user?.email,
-        productsId: _id,
+        // productsId: _id,
       };
       fetch("http://localhost:5000/payment-success-buyers", {
         method: "POST",
         headers: {
           "content-type": "application/json",
-          authorization: `bearer ${localStorage.getItem("access-token")}`,
+          // authorization: `bearer ${localStorage.getItem("access-token")}`,
         },
         body: JSON.stringify(payment),
       })
         .then((res) => res.json())
         .then((data) => {
           if (data.insertedId) {
-            setSuccess(`Congrats! Your ${productsName} Payment Completed`);
+            setSuccess(`Congrats! Your Payment Completed`);
             setTransactionId(paymentIntent.id);
           }
         });
     }
     setProcessing(false);
   };
+
   return (
-    <div className="grid lg:grid-cols-10 gap-12 py-16 items-center">
-      <div className="grid col-span-5">
-        <img className="rounded-md" src={img} alt="" />
-      </div>
-      <div className="grid col-span-5">
-        <form onSubmit={handleSubmit} className="">
-          <div className="py-5 ">
-            <h1 className="text-2xl font-Ubuntu mb-3">Payment Details</h1>
-            <h2>
-              Total Amount : <strong>$ {price}</strong>
-            </h2>
+    <>
+      <section>
+        <div className="lg:grid lg:grid-cols-12 gap-16 justify-between items-center container mx-auto">
+          <div className="grid col-span-6 px-3 lg:px-0 mb-10 lg:mb-0">
+            <img
+              className="w-full"
+              src="https://cdn.dribbble.com/users/1280935/screenshots/6974685/media/ec4c386222b837da0ff6eabec3f59ba3.gif"
+              alt=""
+            />
           </div>
-          <CardElement
-            options={{
-              style: {
-                base: {
-                  fontSize: "16px",
-                  color: "#424770",
+          <div className="grid col-span-6 bg-white px-5 lg:px-0">
+            <div className="flex lg:items-center items-start">
+              <form onSubmit={handleSubmit} className="w-full">
+                <div className="lg:space-y-10 space-y-7 mb-5 lg:mb-10">
+                  <h1 className="text-2xl font-Ubuntu mb-3 text-black">
+                    Payment Details
+                  </h1>
+                  <h2 className="text-black font-Libre">
+                    Total Amount : <strong>$ {price}</strong>
+                  </h2>
+                </div>
+                <div className="lg:w-4/5">
+                  <CardElement
+                    options={{
+                      style: {
+                        base: {
+                          fontSize: "16px",
+                          color: "#424770",
 
-                  "::placeholder": {
-                    color: "#000000",
-                  },
-                },
-                invalid: {
-                  color: "#9e2146",
-                },
-              },
-            }}
-          />
-          <p className="text-red-400 mt-4">{cardError}</p>
+                          "::placeholder": {
+                            color: "#000000",
+                          },
+                        },
+                        invalid: {
+                          color: "#9e2146",
+                        },
+                      },
+                    }}
+                  />
+                </div>
+                <p className="text-red-400 mt-4">{cardError}</p>
 
-          <button
-            className="mt-5 btn btn-accent px-5 rounded-sm"
-            type="submit"
-            disabled={!stripe || !clientSecret || processing}
-          >
-            Pay Bill
-          </button>
+                <button
+                  className="mt-5 btn btn-accent px-5 rounded-sm"
+                  type="submit"
+                  disabled={!stripe || !clientSecret || processing}
+                >
+                  Pay Bill
+                </button>
 
-          {success && (
-            <div className="mt-5">
-              <p className="text-green-400">{success}</p>
-              <p className="">
-                Your Transaction Id : <strong>{transactionID}</strong>
-              </p>
+                {success && (
+                  <div className="mt-5">
+                    <p className="text-green-400">{success}</p>
+                    <p className="">
+                      Your Transaction Id : <strong>{transactionID}</strong>
+                    </p>
+                  </div>
+                )}
+              </form>
             </div>
-          )}
-        </form>
-      </div>
-    </div>
+          </div>
+        </div>
+      </section>
+    </>
   );
 };
 

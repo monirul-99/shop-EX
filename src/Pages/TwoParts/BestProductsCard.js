@@ -1,16 +1,28 @@
 import React from "react";
+import { useContext } from "react";
 import { IconContext } from "react-icons";
 import { RiEyeLine, RiHeart2Line, RiShoppingCartLine } from "react-icons/ri";
+import { AuthContext } from "../../Context/UserContext";
 import "./BestProducts.css";
 
 const BestProductsCard = ({ best }) => {
+  const {
+    wishlistBooking,
+    shoppingBookingTwo,
+    setCategoriesName,
+    setModalOpenClose,
+  } = useContext(AuthContext);
   return (
-    <section className="border hoverEffect cardHover cursor-pointer">
+    <section
+      className="border hoverEffect cardHover cursor-pointer"
+      data-aos="fade-up"
+      data-aos-duration="1200"
+    >
       <aside className="relative">
         <img src={best?.img} alt="" />
         <div className="absolute top-3 right-3 visibleText duration-300 cursor-pointer">
           <div className="flex flex-row-reverse">
-            <div className="px-1">
+            <div onClick={() => wishlistBooking(best)} className="px-1">
               <IconContext.Provider value={{ size: 23, color: "#ABADAF" }}>
                 <RiHeart2Line />
               </IconContext.Provider>
@@ -24,16 +36,26 @@ const BestProductsCard = ({ best }) => {
 
         <div className="absolute bottom-2 w-full">
           <aside className="flex items-center justify-center space-x-2 visibleCart">
-            <div className="cursor-pointer w-10 h-10 bg-black duration-500 hover:bg-[#797B7E] p-3 rounded-full flex items-center justify-center">
+            <div
+              onClick={() => shoppingBookingTwo(best)}
+              className="cursor-pointer w-10 h-10 bg-black duration-500 hover:bg-[#797B7E] p-3 rounded-full flex items-center justify-center"
+            >
               <IconContext.Provider value={{ size: 20, color: "white" }}>
                 <RiShoppingCartLine />
               </IconContext.Provider>
             </div>
-            <div className="cursor-pointer w-10 h-10 bg-black duration-500 hover:bg-[#797B7E] p-3 rounded-full flex items-center justify-center">
+            <label
+              onClick={() => {
+                setCategoriesName(best);
+                setModalOpenClose(best);
+              }}
+              htmlFor="my-modal-3"
+              className="cursor-pointer w-10 h-10 bg-black duration-500 hover:bg-[#797B7E] p-3 rounded-full flex items-center justify-center"
+            >
               <IconContext.Provider value={{ size: 20, color: "white" }}>
                 <RiEyeLine />
               </IconContext.Provider>
-            </div>
+            </label>
           </aside>
         </div>
       </aside>

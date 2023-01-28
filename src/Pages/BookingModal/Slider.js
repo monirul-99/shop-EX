@@ -23,7 +23,11 @@ export default function Slider({ img }) {
         className="mySwiper"
       >
         <SwiperSlide>
-          <img className="" src={img} alt="" />
+          <img
+            className="lg:w-[417px] lg:h-[452px] w-5/12 mx-auto"
+            src={img}
+            alt=""
+          />
         </SwiperSlide>
       </Swiper>
     </>
