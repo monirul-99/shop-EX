@@ -51,7 +51,7 @@ const AddProducts = () => {
             status: "available",
             advertise: false,
           };
-          fetch(`http://localhost:5000/add-product`, {
+          fetch(`https://shop-ex-server-one.vercel.app/add-product`, {
             method: "POST",
             headers: {
               "content-type": "application/json",

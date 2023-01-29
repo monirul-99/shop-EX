@@ -15,7 +15,7 @@ const Advertise = () => {
   const [reportModalX, setReportModal] = useState();
   const { user } = useContext(AuthContext);
 
-  const url = `http://localhost:5000/advertise-products`;
+  const url = `https://shop-ex-server-one.vercel.app/advertise-products`;
 
   const {
     data: categoriesData = [],

@@ -26,7 +26,7 @@ const AdvertiseCard = ({
   } = ads;
 
   useEffect(() => {
-    fetch(`http://localhost:5000/verify-seller-check/${email}`)
+    fetch(`https://shop-ex-server-one.vercel.app/verify-seller-check/${email}`)
       .then((res) => res.json())
       .then((data) => {
         setVerifyChecker(data.isVerifySeller);
@@ -34,7 +34,7 @@ const AdvertiseCard = ({
   }, [email]);
 
   // const handleSold = (id) => {
-  //   fetch(`http://localhost:5000/sold-product/${id}`, {
+  //   fetch(`https://shop-ex-server-one.vercel.app/sold-product/${id}`, {
   //     method: "PUT",
   //     headers: {
   //       authorization: `bearer ${localStorage.getItem("access-token")}`,

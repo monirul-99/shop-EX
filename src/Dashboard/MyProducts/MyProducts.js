@@ -15,7 +15,7 @@ const MyProducts = () => {
     queryKey: ["bookings", user?.email],
     queryFn: async () => {
       const res = await fetch(
-        `http://localhost:5000/my-products-email/${user?.email}`,
+        `https://shop-ex-server-one.vercel.app/my-products-email/${user?.email}`,
         {}
       );
       const data = await res.json();
@@ -27,7 +27,7 @@ const MyProducts = () => {
   }
 
   const handleAdvertise = (id) => {
-    fetch(`http://localhost:5000/update/${id}`, {
+    fetch(`https://shop-ex-server-one.vercel.app/update/${id}`, {
       method: "PUT",
     })
       .then((res) => res.json())
@@ -40,7 +40,7 @@ const MyProducts = () => {
   };
 
   const myProductsDelete = (id) => {
-    fetch(`http://localhost:5000/all-categories/${id}`, {
+    fetch(`https://shop-ex-server-one.vercel.app/all-categories/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())

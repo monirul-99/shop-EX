@@ -11,7 +11,9 @@ const ReportedProducts = () => {
   } = useQuery({
     queryKey: ["bookings"],
     queryFn: async () => {
-      const res = await fetch(`http://localhost:5000/report-get`);
+      const res = await fetch(
+        `https://shop-ex-server-one.vercel.app/report-get`
+      );
       const data = await res.json();
       return data;
     },

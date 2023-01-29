@@ -24,7 +24,7 @@ const Products = ({ product, setCategoriesName, setModalOpenClose }) => {
   } = product;
 
   useEffect(() => {
-    fetch(`http://localhost:5000/verify-seller-check/${email}`)
+    fetch(`https://shop-ex-server-one.vercel.app/verify-seller-check/${email}`)
       .then((res) => res.json())
       .then((data) => {
         setVerifyChecker(data.isAdmin);

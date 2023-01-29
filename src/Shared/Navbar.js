@@ -13,6 +13,7 @@ import {
   RiUser6Line,
 } from "react-icons/ri";
 import { IoIosArrowDown } from "react-icons/io";
+import { IoLogInOutline, IoPersonAddOutline } from "react-icons/io5";
 import { AuthContext } from "../Context/UserContext";
 import { IconContext } from "react-icons";
 import "../Pages/MyOrders/Orders.css";
@@ -20,7 +21,8 @@ import MyOrders from "../Pages/MyOrders/MyOrders";
 import WishList from "../Pages/WishList/WishList";
 
 const Navbar = () => {
-  const { user, myOrders, wishlistData, addition } = useContext(AuthContext);
+  const { user, logout, myOrders, wishlistData, addition } =
+    useContext(AuthContext);
   // const [isAdmin] = useAdmin(user?.email);
   // const [isSeller] = useSeller(user?.email);
   let [isOpen, setIsOpen] = useState(false);
@@ -307,15 +309,109 @@ const Navbar = () => {
                   <p className="text-[12px]">{myOrders?.length}</p>
                 </aside>
               </button>
+              <div className="dropdown dropdown-end cursor-pointer">
+                <label tabIndex={0} className="cursor-pointer">
+                  {user?.photoURL && (
+                    <img
+                      className="w-9 h-9 rounded-full"
+                      src={user?.photoURL}
+                      alt=""
+                    />
+                  )}
 
-              <div className="w-9 h-9 rounded-full overflow-hidden">
-                {user?.photoURL && <img src={user?.photoURL} alt="" />}
+                  {!user?.photoURL && (
+                    <IconContext.Provider
+                      value={{ size: 23, color: "#ABADAF" }}
+                    >
+                      <RiUser6Line />
+                    </IconContext.Provider>
+                  )}
+                </label>
+
+                <div
+                  tabIndex={0}
+                  className="dropdown-content font-Poppins tracking-wide shadow w-48 bg-white flex flex-col space-y-5 py-3 px-5 mt-6 lg:mt-7"
+                >
+                  <nav aria-label="Main Nav" class="flex flex-col">
+                    {user?.displayName && (
+                      <aside
+                        onClick={logout}
+                        class="flex items-center duration-100 hover:border-l-[3px] hover:border-blue-500 hover:bg-blue-50 px-4 py-3 hover:text-blue-700 text-gray-500"
+                      >
+                        <div className="">
+                          <IconContext.Provider value={{ size: 23 }}>
+                            <IoLogInOutline />
+                          </IconContext.Provider>
+                        </div>
+
+                        <span class="ml-3 text-sm font-medium"> Log Out </span>
+                      </aside>
+                    )}
+                    {!user?.displayName && (
+                      <Link to="/SignIn">
+                        <aside class="flex items-center duration-100 hover:border-l-[3px] hover:border-blue-500 hover:bg-blue-50 px-4 py-3 hover:text-blue-700 text-gray-500">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="h-5 w-5 opacity-75"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                            stroke-width="2"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                            />
+                          </svg>
+
+                          <span class="ml-3 text-sm font-medium"> Log In </span>
+                        </aside>
+                      </Link>
+                    )}
+
+                    {!user?.displayName && (
+                      <Link to="/SignUp">
+                        <aside class="flex items-center duration-100 hover:border-l-[3px] hover:border-blue-500 hover:bg-blue-50 px-4 py-3 hover:text-blue-700 text-gray-500">
+                          <div>
+                            <IconContext.Provider value={{ size: 17 }}>
+                              <IoPersonAddOutline />
+                            </IconContext.Provider>
+                          </div>
+
+                          <span class="ml-3 text-sm font-medium">Register</span>
+                        </aside>
+                      </Link>
+                    )}
+
+                    {user?.displayName && (
+                      <aside class="flex items-center duration-100 hover:border-l-[3px] hover:border-blue-500 hover:bg-blue-50 px-4 py-3 hover:text-blue-700 text-gray-500">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          class="h-5 w-5 opacity-75"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                          stroke-width="2"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
+                          />
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                          />
+                        </svg>
+
+                        <span class="ml-3 text-sm font-medium"> Account </span>
+                      </aside>
+                    )}
+                  </nav>
+                </div>
               </div>
-              {!user?.photoURL && (
-                <IconContext.Provider value={{ size: 23, color: "#ABADAF" }}>
-                  <RiUser6Line />
-                </IconContext.Provider>
-              )}
             </aside>
           </div>
         </div>

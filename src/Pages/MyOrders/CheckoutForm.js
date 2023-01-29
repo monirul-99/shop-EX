@@ -13,7 +13,7 @@ const CheckoutForm = ({ price }) => {
   const [clientSecret, setClientSecret] = useState("");
 
   useEffect(() => {
-    fetch("http://localhost:5000/create-payment-intent", {
+    fetch("https://shop-ex-server-one.vercel.app/create-payment-intent", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -72,7 +72,7 @@ const CheckoutForm = ({ price }) => {
         email: user?.email,
         // productsId: _id,
       };
-      fetch("http://localhost:5000/payment-success-buyers", {
+      fetch("https://shop-ex-server-one.vercel.app/payment-success-buyers", {
         method: "POST",
         headers: {
           "content-type": "application/json",

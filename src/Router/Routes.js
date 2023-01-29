@@ -58,7 +58,9 @@ export const Router = createBrowserRouter([
       {
         path: "/categories-search/:id",
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/categories-search/${params.id}`),
+          fetch(
+            `https://shop-ex-server-one.vercel.app/categories-search/${params.id}`
+          ),
         element: <ProductsInfo />,
       },
       {
@@ -80,13 +82,15 @@ export const Router = createBrowserRouter([
       {
         path: "/all-categories/:id",
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/all-categories/${params.id}`),
+          fetch(
+            `https://shop-ex-server-one.vercel.app/all-categories/${params.id}`
+          ),
         element: <CategoriesRouteById />,
       },
       // {
       //   path: "/categories-search/:id",
       //   loader: ({ params }) =>
-      //     fetch(`http://localhost:5000/categories-search/${params.id}`),
+      //     fetch(`https://shop-ex-server-one.vercel.app/categories-search/${params.id}`),
       //   element: (
       //     <PrivateRoute>
       //       <Payment />

@@ -21,7 +21,7 @@ const CategoriesRouteById = () => {
   const { data: dataX = [], refetch } = useQuery({
     queryKey: ["doctors"],
     queryFn: async () =>
-      fetch(`http://localhost:5000/all-categories/:id`, {
+      fetch(`https://shop-ex-server-one.vercel.app/all-categories/:id`, {
         headers: {
           authorization: `bearer ${localStorage.getItem("access-token")}`,
         },

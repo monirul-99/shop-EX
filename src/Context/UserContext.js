@@ -45,7 +45,7 @@ const UserContext = ({ children }) => {
       email: user?.email,
       location,
     };
-    fetch(`http://localhost:5000/orders-products`, {
+    fetch(`https://shop-ex-server-one.vercel.app/orders-products`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -72,7 +72,7 @@ const UserContext = ({ children }) => {
       email: user?.email,
       location,
     };
-    fetch(`http://localhost:5000/orders-products`, {
+    fetch(`https://shop-ex-server-one.vercel.app/orders-products`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -98,7 +98,7 @@ const UserContext = ({ children }) => {
       email: user?.email,
       location,
     };
-    fetch(`http://localhost:5000/wishlist-products`, {
+    fetch(`https://shop-ex-server-one.vercel.app/wishlist-products`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -114,21 +114,25 @@ const UserContext = ({ children }) => {
 
   //wishList data request
   useEffect(() => {
-    fetch(`http://localhost:5000/wishlist-get-email/${user?.email}`)
+    fetch(
+      `https://shop-ex-server-one.vercel.app/wishlist-get-email/${user?.email}`
+    )
       .then((res) => res.json())
       .then((data) => setWishlistData(data));
   }, [user?.email, wishlistUpdate]);
 
   //myOrders data request
   useEffect(() => {
-    fetch(`http://localhost:5000/orders-get-email/${user?.email}`)
+    fetch(
+      `https://shop-ex-server-one.vercel.app/orders-get-email/${user?.email}`
+    )
       .then((res) => res.json())
       .then((data) => setMyOrders(data));
   }, [user?.email, updateGet]);
 
   //Comments Get Func
   useEffect(() => {
-    fetch(`http://localhost:5000/comments-data`)
+    fetch(`https://shop-ex-server-one.vercel.app/comments-data`)
       .then((res) => res.json())
       .then((data) => setComments(data));
   }, []);
@@ -136,7 +140,7 @@ const UserContext = ({ children }) => {
   //MyOrders Delete Items Func
   const orderProductsDelete = (id) => {
     setUpdateGet("");
-    fetch(`http://localhost:5000/order-products/${id}`, {
+    fetch(`https://shop-ex-server-one.vercel.app/order-products/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())
@@ -151,7 +155,7 @@ const UserContext = ({ children }) => {
   //WishList Delete Items Func
   const wishlistProductsDelete = (id) => {
     setWishlistUpdateGet("");
-    fetch(`http://localhost:5000/wishlist-products/${id}`, {
+    fetch(`https://shop-ex-server-one.vercel.app/wishlist-products/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())

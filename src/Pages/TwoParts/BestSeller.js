@@ -11,7 +11,7 @@ const BestSeller = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/best-products")
+      .get("https://shop-ex-server-one.vercel.app/best-products")
       .then((res) => setBestProductsData(res.data))
       .catch((error) => console.log(error));
   }, []);
