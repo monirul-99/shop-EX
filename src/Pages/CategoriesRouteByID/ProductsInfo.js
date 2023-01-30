@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { HiOutlineHeart } from "react-icons/hi2";
 import {
   RiFacebookFill,
@@ -8,22 +8,37 @@ import {
   RiWhatsappFill,
 } from "react-icons/ri";
 
-// import required modules
-import { Link, useLoaderData } from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
 import { IconContext } from "react-icons";
 import { AuthContext } from "../../Context/UserContext";
+import Sorted from "./SortItems";
 
 export function ProductsInfo() {
   const [quantity, setQuantity] = useState(1);
-  const { Orders } = useContext(AuthContext);
+  const [reviewData, setReviewData] = useState([]);
+  const {
+    wishlistBooking,
+    shoppingBooking,
+    user,
+    reviewsBooking,
+    review,
+    setReview,
+    reviewUp,
+  } = useContext(AuthContext);
   const data = useLoaderData();
-  console.log("Hello", data);
   const { title, condition, price, OriginalPrice, _id, status, describe, img } =
     data;
 
+  //review data request
+  useEffect(() => {
+    fetch(`https://shop-ex-server-one.vercel.app/review-data/${_id}`)
+      .then((res) => res.json())
+      .then((data) => setReviewData(data));
+  }, [_id, reviewUp]);
+
   return (
     <>
-      <section className="relative bg-[url(https://res.cloudinary.com/dr4o1qswz/image/upload/v1672635981/Tree%20SHOP/UpdateTree/Untitled-2_e9x6ul.jpg)] bg-cover bg-center bg-no-repeat lg:h-[200px] h-[180px]">
+      {/* <section className="relative bg-[url(https://res.cloudinary.com/dr4o1qswz/image/upload/v1672635981/Tree%20SHOP/UpdateTree/Untitled-2_e9x6ul.jpg)] bg-cover bg-center bg-no-repeat lg:h-[200px] h-[180px]">
         <div className="absolute inset-0 bg-black/25 flex items-center justify-center">
           <div className="text-center sm:text-left ">
             <h1 className="lg:text-4xl text-3xl text-center font-Poppins text-white font-bold">
@@ -35,12 +50,12 @@ export function ProductsInfo() {
             </p>
           </div>
         </div>
-      </section>
+      </section> */}
 
       <section className="py-10">
         <div className="container mx-auto font-Libre">
           <div className="grid lg:grid-cols-2 gap-10 lg:w-[80%] w-[98%] mx-auto">
-            <aside>
+            <aside className="relative z-10">
               <img
                 className="lg:w-[594px] lg:h-[645px] w-full"
                 src={img}
@@ -50,7 +65,7 @@ export function ProductsInfo() {
             <aside className="px-5">
               <div>
                 <p className="font-Ubuntu">
-                  <span className="text-xl uppercase font-light text-gray-500 tracking-widest">
+                  <span className="uppercase font-light text-gray-500 tracking-widest">
                     Not Found
                   </span>
                 </p>
@@ -165,12 +180,14 @@ export function ProductsInfo() {
                       </p>
                     </div>
                   </div>
-                  <button className="border text-white px-6 py-2.5 rounded-sm font-Poppins text-[0.9rem] hidden lg:block md:block">
+                  <button
+                    onClick={() => wishlistBooking(data)}
+                    className="border text-white px-6 py-2.5 rounded-sm font-Poppins text-[0.9rem] hidden lg:block md:block"
+                  >
                     <IconContext.Provider
                       value={{
                         color: "gray",
                         size: 23,
-                        className: "hoverRed",
                       }}
                     >
                       <HiOutlineHeart />
@@ -178,7 +195,7 @@ export function ProductsInfo() {
                   </button>
 
                   <button
-                    onClick={() => Orders(data)}
+                    onClick={() => shoppingBooking(data)}
                     className="bg-[#f67321] text-white px-6  py-[11.5px] rounded-sm font-Poppins text-[0.9rem] w-[51.3%] hidden lg:block md:block"
                   >
                     <div className=" flex items-center justify-center space-x-2">
@@ -190,7 +207,7 @@ export function ProductsInfo() {
                   </button>
 
                   <button
-                    onClick={() => Orders(data)}
+                    onClick={() => shoppingBooking(data)}
                     className="bg-[#f67321] text-white px-6  py-[11.5px] rounded-sm font-Poppins text-[0.9rem] lg:hidden md:hidden"
                   >
                     <IconContext.Provider value={{ color: "", size: 23 }}>
@@ -198,7 +215,10 @@ export function ProductsInfo() {
                     </IconContext.Provider>
                   </button>
 
-                  <button className="bg-[#3a9943ce] text-white px-6  py-[11.5px] rounded-sm font-Poppins text-[0.9rem] lg:hidden md:hidden">
+                  <button
+                    onClick={() => wishlistBooking(data)}
+                    className="bg-[#3a9943ce] text-white px-6  py-[11.5px] rounded-sm font-Poppins text-[0.9rem] lg:hidden md:hidden"
+                  >
                     <IconContext.Provider value={{ color: "", size: 23 }}>
                       <HiOutlineHeart />
                     </IconContext.Provider>
@@ -245,26 +265,62 @@ export function ProductsInfo() {
           </div>
         </div>
 
-        {/* <div className="container mx-auto lg:w-[65%] pb-1 lg:mt-16 w-[80%]">
-          <div className="flex items-center justify-start lg:space-x-10 space-x-3">
-            <Link to="/review">
-              <h1 className="text-center mt-16 lg:text-xl font-Poppins">
-                Review
-              </h1>
-            </Link>
+        <div className="container mx-auto lg:w-[65%] pb-1 lg:mt-16">
+          <div className="flex items-center justify-between mt-16 space-x-5 bg-gray-200 h-16">
+            <h1 className="text-center lg:text-xl font-Poppins pl-3 text-slate-800">
+              {reviewData.length} Review
+            </h1>
+            <aside className="flex items-center font-Libre">
+              <Sorted />
+            </aside>
           </div>
-        </div> */}
-      </section>
-      {/* <section className="container mx-auto lg:w-[65%] w-11/12 mt-16">
-        <h1 className="capitalize text-2xl font-Poppins text-center underline underline-offset-8 mb-5">
-          You May also like
-        </h1>
-        <div className="grid grid-cols-2 lg:grid-cols-5 gap-6 py-10">
-          {relatedData?.map((product, inx) => (
-            <ProductCard key={inx} product={product}></ProductCard>
-          ))} 
+
+          <div className="mt-7 font-Libre flex items-center space-x-3 px-3 lg:px-0 mb-20">
+            <div className="avatar">
+              <div className="w-10 h-10 rounded-full ring-2">
+                <img src={user?.photoURL} alt="" />
+              </div>
+            </div>
+
+            <div className="w-full flex items-center justify-between gap-5">
+              <input
+                onChange={(e) => setReview(e.target.value)}
+                className="border lg:py-2.5 py-2 w-10/12 rounded-full pl-5 text-sm text-slate-900 bg-gray-100"
+                type="text"
+                placeholder="Write a Public Review"
+              />
+
+              <button
+                onClick={() => {
+                  reviewsBooking(review, _id);
+                }}
+                className="bg-slate-800 text-white px-5 lg:py-2.5 rounded py-2 text-sm"
+              >
+                Review
+              </button>
+            </div>
+          </div>
+
+          <div className="font-Libre space-y-10 px-3 lg:px-0">
+            {reviewData?.map((rData, inx) => (
+              <div className="flex space-x-3" key={inx}>
+                <div className="avatar">
+                  <div className="w-10 h-10 rounded-full ring-2">
+                    <img src={rData.img} alt="" />
+                  </div>
+                </div>
+
+                <aside>
+                  <h1 className="text-slate-900 font-semibold">{rData.user}</h1>
+                  <h1 className="text-slate-600 text-sm">
+                    {rData.review.slice(0, 130)}
+                  </h1>
+                </aside>
+              </div>
+            ))}
+          </div>
         </div>
-      </section> */}
+      </section>
     </>
   );
 }

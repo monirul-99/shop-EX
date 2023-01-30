@@ -22,22 +22,25 @@ const UserContext = ({ children }) => {
   const [updateGet, setUpdateGet] = useState("");
   const [wishlistUpdate, setWishlistUpdateGet] = useState("");
   const [wishlistData, setWishlistData] = useState("");
+  const [review, setReview] = useState("");
+  const [reviewUp, setReviewUp] = useState("");
 
   //Modal
   const [categoriesName, setCategoriesName] = useState("");
   const [reportCloseModal, setReportCloseModal] = useState(null);
   const [modalOpenClose, setModalOpenClose] = useState(null);
 
-  const addition = myOrders.reduce((accumulator, object) => {
+  let addition2 = myOrders.reduce((accumulator, object) => {
     return accumulator + object.price;
   }, 0);
 
+  const addition = parseFloat(addition2).toFixed(2);
   //Add to cart with modal func
-  const shoppingBooking = (modalData, setModalOpenClose) => {
+  const shoppingBooking = (modalData) => {
     setUpdateGet("");
     const { title, img, price, describe, location } = modalData;
     const orders = {
-      productsName: title,
+      title,
       img,
       price,
       describe,
@@ -109,6 +112,31 @@ const UserContext = ({ children }) => {
       .then(() => {
         toast.success(`${user?.displayName} Wishlist  added successful!`);
         setWishlistUpdateGet("Update Value");
+        setModalOpenClose(null);
+      });
+  };
+
+  //review func
+  const reviewsBooking = (review, id) => {
+    setReviewUp("");
+    const reviews = {
+      user: user?.displayName,
+      img: user?.photoURL,
+      diff: id,
+      review,
+      email: user?.email,
+    };
+    fetch(`https://shop-ex-server-one.vercel.app/review-post`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(reviews),
+    })
+      .then((res) => res.json())
+      .then(() => {
+        toast.success(`${user?.displayName} review add successful!`);
+        setReviewUp("Update");
       });
   };
 
@@ -240,6 +268,11 @@ const UserContext = ({ children }) => {
     wishlistData,
     wishlistProductsDelete,
     addition,
+    reviewsBooking,
+    review,
+    setReview,
+    setWishlistData,
+    reviewUp,
   };
   return (
     <div>

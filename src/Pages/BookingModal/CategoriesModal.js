@@ -6,7 +6,7 @@ import { AuthContext } from "../../Context/UserContext";
 import Slider from "./Slider";
 
 const BookingModal = ({ modalData, setModalOpenClose }) => {
-  const { shoppingBooking } = useContext(AuthContext);
+  const { shoppingBooking, wishlistBooking } = useContext(AuthContext);
   const { title, status, img, price, describe, OriginalPrice, _id } = modalData;
 
   return (
@@ -30,16 +30,26 @@ const BookingModal = ({ modalData, setModalOpenClose }) => {
                 </label>
               </div>
 
-              <div className="pl-5 font-Josefin bg-[#DFE4EA]">
+              <div className="pl-5 font-Libre bg-[#DFE4EA] lg:space-y-4 space-y-2">
                 <p className="bg-[#55C1A7] w-20 text-white text-center text-xs py-1 pt-1.5">
                   {status ? "In Stock" : "Out Stock"}
                 </p>
-                <h1 className="lg:text-[28px] text-xl font-bold text-[#121212] mt-4 mb-2">
-                  {title}
-                </h1>
-                <h2 className="font-Libre lg:text-[20px]">${price}</h2>
 
-                <div className="py-4 hidden lg:block md:block">
+                {title.length < 8 && (
+                  <h1 className="lg:text-[28px] text-xl font-bold text-[#121212] lg:mt-4 mt-2 lg:mb-2 mb-1">
+                    Nice {title}
+                  </h1>
+                )}
+                {title.length > 8 && (
+                  <h1 className="lg:text-[28px] text-xl font-bold text-[#121212] lg:mt-4 mt-2 lg:mb-2 mb-1">
+                    {title}
+                  </h1>
+                )}
+                <h2 className="font-Libre lg:text-[20px] text-slate-900 font-semibold">
+                  ${price}
+                </h2>
+
+                <div className="py-4 space-y-2 hidden lg:block md:block text-slate-900">
                   <p>
                     available : <span>In Stock</span>
                   </p>
@@ -52,17 +62,17 @@ const BookingModal = ({ modalData, setModalOpenClose }) => {
                 </div>
 
                 <Link to={`/categories-search/${_id}`}>
-                  <p className="underline">More Details</p>
+                  <p className="underline text-blue-400">More Details</p>
                 </Link>
 
-                <p className="text-sm mt-2 mb-3 font-Libre hidden lg:block md:block">
+                <p className="text-sm mt-2 mb-3 font-Libre text-slate-900">
                   {describe.slice(0, 99)}. . .
                 </p>
-                <p className="text-sm mt-2 mb-3 font-Libre lg:hidden md:hidden">
-                  {describe.slice(0, 89)}. . .
-                </p>
 
-                <aside className="flex items-center space-x-2 mb-3">
+                <aside
+                  onClick={() => wishlistBooking(modalData)}
+                  className="flex items-center space-x-2 mb-3 cursor-pointer text-slate-900"
+                >
                   <IconContext.Provider value={{ size: 21, color: "#ABADAF" }}>
                     <RiHeart2Line />
                   </IconContext.Provider>
@@ -71,16 +81,10 @@ const BookingModal = ({ modalData, setModalOpenClose }) => {
                 </aside>
 
                 <button
-                  onClick={() => shoppingBooking(modalData, setModalOpenClose)}
+                  onClick={() => shoppingBooking(modalData)}
                   className="py-3 mb-5 text-[17px] w-full max-w-xs text-center bg-black text-white"
                 >
                   Add To Carts
-                </button>
-                <button
-                  onClick={shoppingBooking}
-                  className="py-3 mb-5 text-[17px] w-full max-w-xs text-center bg-[#F2F3F5]"
-                >
-                  Buy Now
                 </button>
               </div>
             </div>
@@ -106,16 +110,16 @@ const BookingModal = ({ modalData, setModalOpenClose }) => {
                 </label>
               </div>
 
-              <div className="pl-5 font-Josefin bg-[#F7F7F7]">
+              <div className="pl-5 font-Libre bg-[#F7F7F7] lg:space-y-4 space-y-2">
                 <p className="bg-[#55C1A7] w-20 text-white text-center text-xs py-1 pt-1.5">
                   {status ? "In Stock" : "Out Stock"}
                 </p>
-                <h1 className="lg:text-[28px] text-xl font-bold text-[#121212] mt-4 mb-2">
+                <h1 className="lg:text-[28px] text-xl font-bold text-[#121212] lg:mt-4 mt-1 lg:mb-2 mb-1">
                   {title}
                 </h1>
                 <h2 className="font-Libre lg:text-[20px]">${price}</h2>
 
-                <div className="py-3 hidden lg:block md:block">
+                <div className="py-3 hidden lg:block md:block space-y-3">
                   <p>
                     available : <span>In Stock</span>
                   </p>
@@ -127,17 +131,19 @@ const BookingModal = ({ modalData, setModalOpenClose }) => {
                   </p>
                 </div>
                 <Link to={`/categories-search/${_id}`}>
-                  <p className="underline">More Details</p>
+                  <p className="underline text-blue-400">More Details</p>
                 </Link>
 
-                <p className="text-sm mt-2 mb-3 font-Libre hidden lg:block md:block">
+                <p className="text-sm mt-2 mb-3 font-Libre">
                   {describe.slice(0, 99)}. . .
                 </p>
-                <p className="text-sm mt-2 mb-3 font-Libre lg:hidden md:hidden">
-                  {describe.slice(0, 89)}. . .
-                </p>
 
-                <aside className="flex items-center space-x-2 mb-3">
+                <aside
+                  onClick={() => {
+                    wishlistBooking(modalData);
+                  }}
+                  className="flex items-center space-x-2 mb-3 cursor-pointer"
+                >
                   <IconContext.Provider value={{ size: 21, color: "#ABADAF" }}>
                     <RiHeart2Line />
                   </IconContext.Provider>
@@ -146,16 +152,10 @@ const BookingModal = ({ modalData, setModalOpenClose }) => {
                 </aside>
 
                 <button
-                  onClick={() => shoppingBooking(modalData, setModalOpenClose)}
+                  onClick={() => shoppingBooking(modalData)}
                   className="py-3 mb-5 text-[17px] w-full max-w-xs text-center bg-black text-white"
                 >
                   Add To Carts
-                </button>
-                <button
-                  onClick={shoppingBooking}
-                  className="py-3 mb-5 text-[17px] w-full max-w-xs text-center text-white bg-[#bebebf]"
-                >
-                  Buy Now
                 </button>
               </div>
             </div>

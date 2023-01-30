@@ -9,12 +9,12 @@ const MyOrders = () => {
   const { myOrders, orderProductsDelete } = useContext(AuthContext);
 
   return (
-    <div className="hoverFlow h-96 lg:h-[70vh]">
+    <div className="hoverFlow h-96">
       <div className="flex flex-col space-y-4">
         <ul className="flex flex-col">
           {myOrders.map((order, inx) => (
             <li key={inx} className="py-5 border-none">
-              <div className="grid grid-cols-12 w-full">
+              <div className="grid grid-cols-12">
                 <div className="grid col-span-4">
                   <img
                     className="flex-shrink-0 object-cover w-16 h-16 outline-none"

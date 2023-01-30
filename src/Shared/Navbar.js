@@ -13,7 +13,11 @@ import {
   RiUser6Line,
 } from "react-icons/ri";
 import { IoIosArrowDown } from "react-icons/io";
-import { IoLogInOutline, IoPersonAddOutline } from "react-icons/io5";
+import {
+  IoArrowForwardOutline,
+  IoLogInOutline,
+  IoPersonAddOutline,
+} from "react-icons/io5";
 import { AuthContext } from "../Context/UserContext";
 import { IconContext } from "react-icons";
 import "../Pages/MyOrders/Orders.css";
@@ -202,13 +206,124 @@ const Navbar = () => {
         <div>
           <div className="flex justify-between container mx-auto py-6 px-5 lg:px-0">
             <div className="flex items-center space-x-3">
-              <label htmlFor="my-drawer-4" className="drawer-button">
-                <aside className="-mt-1 lg:hidden md:hidden">
-                  <IconContext.Provider value={{ size: 25 }}>
-                    <RiBarChartHorizontalLine />
-                  </IconContext.Provider>
-                </aside>
-              </label>
+              <div className="dropdown dropdown-bottom cursor-pointer">
+                <label
+                  tabIndex={0}
+                  className="cursor-pointer lg:hidden md:hidden"
+                >
+                  <aside className="-mt-1">
+                    <IconContext.Provider value={{ size: 25 }}>
+                      <RiBarChartHorizontalLine />
+                    </IconContext.Provider>
+                  </aside>
+                </label>
+                <div
+                  tabIndex={0}
+                  className="dropdown-content menu p-2 shadow bg-white w-52 mt-[29px] -ml-5"
+                >
+                  <nav aria-label="Main Nav" class="flex flex-col space-y-1">
+                    <Link
+                      to="/home"
+                      class="flex uppercase items-center duration-100 hover:border-l-[3px] hover:border-blue-500 hover:bg-blue-50 px-4 py-3 hover:text-blue-700 text-gray-500 text-[15px]"
+                    >
+                      Home
+                    </Link>
+
+                    <details class="group [&_summary::-webkit-details-marker]:hidden duration-100 hover:border-l-[3px] hover:border-blue-500 hover:bg-blue-50 py-1 hover:text-blue-700 text-gray-500">
+                      <summary class="flex items-center px-4 py-2 text-gray-500 rounded-lg cursor-pointer hover:bg-gray-100 hover:text-gray-700">
+                        <span class="font-medium uppercase text-[15px]">
+                          women's
+                        </span>
+
+                        <span class="ml-auto transition duration-300 shrink-0 group-open:-rotate-180">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="w-5 h-5"
+                            viewBox="0 0 20 20"
+                            fill="currentColor"
+                          >
+                            <path
+                              fill-rule="evenodd"
+                              d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                              clip-rule="evenodd"
+                            />
+                          </svg>
+                        </span>
+                      </summary>
+
+                      <nav
+                        aria-label="Users Nav"
+                        class="flex flex-col mt-2 ml-8 space-y-1"
+                      >
+                        <aside class="flex items-center px-4 py-2 text-gray-500 capitalize rounded-lg cursor-pointer hover:bg-gray-100 hover:text-gray-700 text-[15px]">
+                          Items 1
+                        </aside>
+
+                        <aside class="flex items-center px-4 py-2 text-gray-500 capitalize rounded-lg cursor-pointer hover:bg-gray-100 hover:text-gray-700 text-[15px]">
+                          Items 2
+                        </aside>
+                      </nav>
+                    </details>
+
+                    <Link
+                      to="/about"
+                      class="flex items-center duration-100 hover:border-l-[3px] hover:border-blue-500 hover:bg-blue-50 px-4 py-3 hover:text-blue-700 text-gray-500 uppercase text-[15px]"
+                    >
+                      about us
+                    </Link>
+
+                    <Link
+                      to="/shop"
+                      class="flex items-center duration-100 hover:border-l-[3px] hover:border-blue-500 hover:bg-blue-50 px-4 py-3 hover:text-blue-700 text-gray-500 uppercase text-[15px]"
+                    >
+                      New arrival
+                    </Link>
+
+                    <details class="group [&_summary::-webkit-details-marker]:hidden duration-100 hover:border-l-[3px] hover:border-blue-500 hover:bg-blue-50 py-1 hover:text-blue-700 text-gray-500">
+                      <summary class="flex items-center px-4 py-2 text-gray-500 uppercase rounded-lg cursor-pointer hover:bg-gray-100 hover:text-gray-700">
+                        <span class="font-medium text-[15px]"> men's </span>
+
+                        <span class="ml-auto transition duration-300 shrink-0 group-open:-rotate-180">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="w-5 h-5"
+                            viewBox="0 0 20 20"
+                            fill="currentColor"
+                          >
+                            <path
+                              fill-rule="evenodd"
+                              d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                              clip-rule="evenodd"
+                            />
+                          </svg>
+                        </span>
+                      </summary>
+
+                      <nav
+                        aria-label="Account Nav"
+                        class="flex flex-col mt-2 ml-8 space-y-1"
+                      >
+                        <aside class="block px-4 py-2 text-sm font-medium text-gray-500 rounded-lg hover:bg-gray-100 hover:text-gray-700">
+                          Items 1
+                        </aside>
+
+                        <aside class="block px-4 py-2 text-sm font-medium text-gray-500 rounded-lg hover:bg-gray-100 hover:text-gray-700">
+                          Items 2
+                        </aside>
+
+                        <form action="/logout">
+                          <button
+                            type="submit"
+                            class="w-full px-4 py-2 text-sm font-medium text-left text-gray-500 rounded-lg hover:bg-gray-100 hover:text-gray-700"
+                          >
+                            Items 3
+                          </button>
+                        </form>
+                      </nav>
+                    </details>
+                  </nav>
+                </div>
+              </div>
 
               <Link
                 className="lg:text-4xl text-[20px] font-Josefin font-extralight"
@@ -220,14 +335,17 @@ const Navbar = () => {
 
             <div className="hidden lg:block">
               <aside className="flex gap-10 justify-center items-center text-[14px] pt-4">
-                <Link className=" uppercase" to="/home">
+                <Link
+                  className="relative before:absolute before:-bottom-1 before:h-0.5 before:w-full before:origin-left before:scale-x-0 before:bg-slate-900 before:transition hover:before:scale-100 uppercase"
+                  to="/home"
+                >
                   Home
                 </Link>
 
                 <div className="dropdown dropdown-bottom cursor-pointer">
                   <label
                     tabIndex={0}
-                    className="uppercase space-x-1 flex items-center cursor-pointer"
+                    className="relative before:absolute before:-bottom-1 before:h-0.5 before:w-full before:origin-left before:scale-x-0 before:bg-slate-900 before:transition hover:before:scale-100 uppercase space-x-1 flex items-center cursor-pointer"
                   >
                     <p>women's</p>
                     <aside className="-mt-1">
@@ -236,23 +354,107 @@ const Navbar = () => {
                       </IconContext.Provider>
                     </aside>
                   </label>
-                  <ul
+                  <div
                     tabIndex={0}
-                    className="dropdown-content menu p-2 shadow bg-white w-40 mt-[31px]"
+                    className="dropdown-content menu p-2 shadow bg-white w-52 mt-[31px]"
                   >
-                    <li>Sample Item 1</li>
-                    <li>Sample Item 2</li>
-                    <li>Sample Item 3</li>
-                    <li>Sample Item 4</li>
-                    <li>Sample Item 5</li>
-                    <li>Sample Item 6</li>
-                  </ul>
+                    <nav aria-label="Main Nav" class="flex flex-col space-y-1">
+                      <aside class="flex items-center duration-100 hover:border-l-[3px] hover:border-blue-500 hover:bg-blue-50 px-4 py-3 hover:text-blue-700 text-gray-500">
+                        Wedding Dress
+                      </aside>
+
+                      <details class="group [&_summary::-webkit-details-marker]:hidden duration-100 hover:border-l-[3px] hover:border-blue-500 hover:bg-blue-50 py-1 hover:text-blue-700 text-gray-500">
+                        <summary class="flex items-center px-4 py-2 text-gray-500 rounded-lg cursor-pointer hover:bg-gray-100 hover:text-gray-700">
+                          <span class="text-sm font-medium"> T-Shirt </span>
+
+                          <span class="ml-auto transition duration-300 shrink-0 group-open:-rotate-180">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              class="w-5 h-5"
+                              viewBox="0 0 20 20"
+                              fill="currentColor"
+                            >
+                              <path
+                                fill-rule="evenodd"
+                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                clip-rule="evenodd"
+                              />
+                            </svg>
+                          </span>
+                        </summary>
+
+                        <nav
+                          aria-label="Users Nav"
+                          class="flex flex-col mt-2 ml-8 space-y-1"
+                        >
+                          <aside class="flex items-center duration-100 hover:border-l-[3px] hover:border-blue-500 hover:bg-blue-50 px-4 py-3 hover:text-blue-700 text-gray-500">
+                            Items 1
+                          </aside>
+
+                          <aside class="flex items-center duration-100 hover:border-l-[3px] hover:border-blue-500 hover:bg-blue-50 px-4 py-3 hover:text-blue-700 text-gray-500">
+                            Items 2
+                          </aside>
+                        </nav>
+                      </details>
+
+                      <aside class="flex items-center duration-100 hover:border-l-[3px] hover:border-blue-500 hover:bg-blue-50 px-4 py-3 hover:text-blue-700 text-gray-500">
+                        Sweater
+                      </aside>
+
+                      <aside class="flex items-center duration-100 hover:border-l-[3px] hover:border-blue-500 hover:bg-blue-50 px-4 py-3 hover:text-blue-700 text-gray-500">
+                        Gym Clothes
+                      </aside>
+
+                      <details class="group [&_summary::-webkit-details-marker]:hidden duration-100 hover:border-l-[3px] hover:border-blue-500 hover:bg-blue-50 py-1 hover:text-blue-700 text-gray-500">
+                        <summary class="flex items-center px-4 py-2 text-gray-500 rounded-lg cursor-pointer hover:bg-gray-100 hover:text-gray-700">
+                          <span class="text-sm font-medium"> Hoodie </span>
+
+                          <span class="ml-auto transition duration-300 shrink-0 group-open:-rotate-180">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              class="w-5 h-5"
+                              viewBox="0 0 20 20"
+                              fill="currentColor"
+                            >
+                              <path
+                                fill-rule="evenodd"
+                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                clip-rule="evenodd"
+                              />
+                            </svg>
+                          </span>
+                        </summary>
+
+                        <nav
+                          aria-label="Account Nav"
+                          class="flex flex-col mt-2 ml-8 space-y-1"
+                        >
+                          <aside class="block px-4 py-2 text-sm font-medium text-gray-500 rounded-lg hover:bg-gray-100 hover:text-gray-700">
+                            Items 1
+                          </aside>
+
+                          <aside class="block px-4 py-2 text-sm font-medium text-gray-500 rounded-lg hover:bg-gray-100 hover:text-gray-700">
+                            Items 2
+                          </aside>
+
+                          <form action="/logout">
+                            <button
+                              type="submit"
+                              class="w-full px-4 py-2 text-sm font-medium text-left text-gray-500 rounded-lg hover:bg-gray-100 hover:text-gray-700"
+                            >
+                              Items 3
+                            </button>
+                          </form>
+                        </nav>
+                      </details>
+                    </nav>
+                  </div>
                 </div>
 
                 <div className="dropdown dropdown-bottom cursor-pointer">
                   <label
                     tabIndex={0}
-                    className="uppercase space-x-1 flex items-center cursor-pointer"
+                    className="relative before:absolute before:-bottom-1 before:h-0.5 before:w-full before:origin-left before:scale-x-0 before:bg-slate-900 before:transition hover:before:scale-100 uppercase space-x-1 flex items-center cursor-pointer"
                   >
                     <p>men's</p>
                     <aside className="-mt-1">
@@ -261,22 +463,112 @@ const Navbar = () => {
                       </IconContext.Provider>
                     </aside>
                   </label>
-                  <ul
+                  <div
                     tabIndex={0}
-                    className="dropdown-content menu p-2 shadow bg-white w-40 mt-[31px]"
+                    className="dropdown-content menu p-2 shadow bg-white w-52 mt-[31px]"
                   >
-                    <li>Sample Item 1</li>
-                    <li>Sample Item 2</li>
-                    <li>Sample Item 3</li>
-                    <li>Sample Item 4</li>
-                    <li>Sample Item 5</li>
-                    <li>Sample Item 6</li>
-                  </ul>
+                    <nav aria-label="Main Nav" class="flex flex-col space-y-1">
+                      <aside class="flex items-center duration-100 hover:border-l-[3px] hover:border-blue-500 hover:bg-blue-50 px-4 py-3 hover:text-blue-700 text-gray-500">
+                        Shirt
+                      </aside>
+
+                      <details class="group [&_summary::-webkit-details-marker]:hidden duration-100 hover:border-l-[3px] hover:border-blue-500 hover:bg-blue-50 py-1 hover:text-blue-700 text-gray-500">
+                        <summary class="flex items-center px-4 py-2 text-gray-500 rounded-lg cursor-pointer hover:bg-gray-100 hover:text-gray-700">
+                          <span class="text-sm font-medium"> Jeans </span>
+
+                          <span class="ml-auto transition duration-300 shrink-0 group-open:-rotate-180">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              class="w-5 h-5"
+                              viewBox="0 0 20 20"
+                              fill="currentColor"
+                            >
+                              <path
+                                fill-rule="evenodd"
+                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                clip-rule="evenodd"
+                              />
+                            </svg>
+                          </span>
+                        </summary>
+
+                        <nav
+                          aria-label="Users Nav"
+                          class="flex flex-col mt-2 ml-8 space-y-1"
+                        >
+                          <aside class="flex items-center duration-100 hover:border-l-[3px] hover:border-blue-500 hover:bg-blue-50 px-4 py-3 hover:text-blue-700 text-gray-500">
+                            Items 1
+                          </aside>
+
+                          <aside class="flex items-center duration-100 hover:border-l-[3px] hover:border-blue-500 hover:bg-blue-50 px-4 py-3 hover:text-blue-700 text-gray-500">
+                            Items 2
+                          </aside>
+                        </nav>
+                      </details>
+
+                      <aside class="flex items-center duration-100 hover:border-l-[3px] hover:border-blue-500 hover:bg-blue-50 px-4 py-3 hover:text-blue-700 text-gray-500">
+                        Jackets
+                      </aside>
+
+                      <aside class="flex items-center duration-100 hover:border-l-[3px] hover:border-blue-500 hover:bg-blue-50 px-4 py-3 hover:text-blue-700 text-gray-500">
+                        Blazer
+                      </aside>
+
+                      <details class="group [&_summary::-webkit-details-marker]:hidden duration-100 hover:border-l-[3px] hover:border-blue-500 hover:bg-blue-50 py-1 hover:text-blue-700 text-gray-500">
+                        <summary class="flex items-center px-4 py-2 text-gray-500 rounded-lg cursor-pointer hover:bg-gray-100 hover:text-gray-700">
+                          <span class="text-sm font-medium"> Boots </span>
+
+                          <span class="ml-auto transition duration-300 shrink-0 group-open:-rotate-180">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              class="w-5 h-5"
+                              viewBox="0 0 20 20"
+                              fill="currentColor"
+                            >
+                              <path
+                                fill-rule="evenodd"
+                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                clip-rule="evenodd"
+                              />
+                            </svg>
+                          </span>
+                        </summary>
+
+                        <nav
+                          aria-label="Account Nav"
+                          class="flex flex-col mt-2 ml-8 space-y-1"
+                        >
+                          <aside class="block px-4 py-2 text-sm font-medium text-gray-500 rounded-lg hover:bg-gray-100 hover:text-gray-700">
+                            Items 1
+                          </aside>
+
+                          <aside class="block px-4 py-2 text-sm font-medium text-gray-500 rounded-lg hover:bg-gray-100 hover:text-gray-700">
+                            Items 2
+                          </aside>
+
+                          <form action="/logout">
+                            <button
+                              type="submit"
+                              class="w-full px-4 py-2 text-sm font-medium text-left text-gray-500 rounded-lg hover:bg-gray-100 hover:text-gray-700"
+                            >
+                              Items 3
+                            </button>
+                          </form>
+                        </nav>
+                      </details>
+                    </nav>
+                  </div>
                 </div>
-                <Link className="uppercase  hidden lg:block" to="/shop">
-                  newSHOP
+                <Link
+                  className="relative before:absolute before:-bottom-1 before:h-0.5 before:w-full before:origin-left before:scale-x-0 before:bg-slate-900 before:transition hover:before:scale-100 uppercase  hidden lg:block"
+                  to="/shop"
+                >
+                  new arrival
                 </Link>
-                <Link className="uppercase  hidden lg:block" to="/about">
+                <Link
+                  className="relative before:absolute before:-bottom-1 before:h-0.5 before:w-full before:origin-left before:scale-x-0 before:bg-slate-900 before:transition hover:before:scale-100 uppercase  hidden lg:block"
+                  to="/about"
+                >
                   about
                 </Link>
               </aside>
@@ -287,28 +579,95 @@ const Navbar = () => {
                   <RiSearchLine />
                 </IconContext.Provider>
               </div>
+              <div className="dropdown dropdown-end cursor-pointer ">
+                <label tabIndex={0} className="relative cursor-pointer">
+                  <IconContext.Provider value={{ size: 23, color: "#ABADAF" }}>
+                    <RiHeart2Line />
+                  </IconContext.Provider>
+                  <aside className="absolute -top-2 -right-2 bg-[#2a355c99] w-4 h-4 rounded-full text-white flex items-center justify-center">
+                    <p className="text-[12px]">{wishlistData?.length}</p>
+                  </aside>
+                </label>
 
-              <button
-                type="button"
-                className="relative"
-                onClick={openModalWish}
-              >
-                <IconContext.Provider value={{ size: 23, color: "#ABADAF" }}>
-                  <RiHeart2Line />
-                </IconContext.Provider>
-                <aside className="absolute -top-2 -right-2 bg-[#2a355c99] w-4 h-4 rounded-full text-white flex items-center justify-center">
-                  <p className="text-[12px]">{wishlistData?.length}</p>
-                </aside>
-              </button>
+                <div
+                  data-aos="fade-up"
+                  data-aos-duration="500"
+                  tabIndex={0}
+                  className="dropdown-content menu border-t lg:border-none p-2 shadow bg-white mt-[30px] lg:w-[380px] w-[330px] -mr-14 lg:mr-0 z-40"
+                >
+                  {!wishlistData.length && (
+                    <h1 className="text-red-500 capitalize font-Libre p-5 tracking-wide">
+                      Your wish list is empty !{" "}
+                      <Link
+                        to="/shop"
+                        className="text-sm text-blue-400 underline pl-3"
+                      >
+                        Click to wish
+                      </Link>
+                    </h1>
+                  )}
+                  {wishlistData.length > 0 && <WishList />}
+                </div>
+              </div>
 
-              <button type="button" className="relative" onClick={openModal}>
-                <IconContext.Provider value={{ size: 23, color: "#ABADAF" }}>
-                  <RiShoppingCartLine />
-                </IconContext.Provider>
-                <aside className="absolute -top-2 -right-2 bg-[#2a355c99] w-4 h-4 rounded-full text-white flex items-center justify-center">
-                  <p className="text-[12px]">{myOrders?.length}</p>
-                </aside>
-              </button>
+              <div className="dropdown dropdown-end cursor-pointer ">
+                <label tabIndex={0} className="relative cursor-pointer">
+                  <IconContext.Provider value={{ size: 23, color: "#ABADAF" }}>
+                    <RiShoppingCartLine />
+                  </IconContext.Provider>
+                  <aside className="absolute -top-2 -right-2 bg-[#2a355c99] w-4 h-4 rounded-full text-white flex items-center justify-center">
+                    <p className="text-[12px]">{myOrders?.length}</p>
+                  </aside>
+                </label>
+
+                <div
+                  data-aos="fade-up"
+                  data-aos-duration="500"
+                  tabIndex={0}
+                  className="dropdown-content menu border-t lg:border-none p-2 shadow bg-white mt-[30px] lg:w-[380px] w-[330px] -mr-3 lg:mr-0 z-40"
+                >
+                  {!myOrders.length && (
+                    <h1 className="text-red-500 capitalize font-Libre p-5 tracking-wide">
+                      Your cart list is empty !{" "}
+                      <Link
+                        to="/shop"
+                        className="text-sm text-blue-400 underline pl-3"
+                      >
+                        Click to Shop
+                      </Link>
+                    </h1>
+                  )}
+                  {myOrders.length > 0 && (
+                    <>
+                      <div className="w-full pr-12 py-5 px-4">
+                        <div className="flex items-center justify-between">
+                          <h1 className="uppercase font-semibold">Total</h1>
+
+                          <h1>${addition}</h1>
+                        </div>
+
+                        <Link
+                          to="/payments-page"
+                          class="w-full mt-5 group relative inline-block overflow-hidden px-8 py-3 focus:outline-none focus:ring mx-auto"
+                        >
+                          <span class="absolute inset-y-0 left-0 w-[2px] bg-[#1785BF] transition-all group-hover:w-full"></span>
+
+                          <span class="relative text-sm text-center uppercase tracking-widest font-medium text-indigo-600 transition-colors group-hover:text-white flex space-x-2">
+                            Checkout Process
+                            <aside className="absolute right-0">
+                              <IconContext.Provider value={{ size: 20 }}>
+                                <IoArrowForwardOutline />
+                              </IconContext.Provider>
+                            </aside>
+                          </span>
+                        </Link>
+                      </div>
+
+                      <MyOrders />
+                    </>
+                  )}
+                </div>
+              </div>
               <div className="dropdown dropdown-end cursor-pointer">
                 <label tabIndex={0} className="cursor-pointer">
                   {user?.photoURL && (
@@ -416,81 +775,7 @@ const Navbar = () => {
           </div>
         </div>
 
-        <Transition appear show={isOpen} as={Fragment}>
-          <Dialog as="div" className="relative z-10" onClose={closeModal}>
-            <Transition.Child
-              as={Fragment}
-              enter="ease-out duration-300"
-              enterFrom="opacity-0"
-              enterTo="opacity-100"
-              leave="ease-in duration-200"
-              leaveFrom="opacity-100"
-              leaveTo="opacity-0"
-            >
-              <div className="fixed inset-0 bg-black bg-opacity-25" />
-            </Transition.Child>
-
-            <div className="fixed top-20 overflow-y-auto">
-              <div className="flex min-h-full items-center justify-end text-center lg:w-96">
-                <Transition.Child
-                  as={Fragment}
-                  enter="ease-out duration-300"
-                  enterFrom="opacity-0 scale-95"
-                  enterTo="opacity-100 scale-100"
-                  leave="ease-in duration-200"
-                  leaveFrom="opacity-100 scale-100"
-                  leaveTo="opacity-0 scale-95"
-                >
-                  <Dialog.Panel className="w-full transform overflow-hidden bg-white p-6 text-left align-middle shadow-xl transition-all">
-                    <Dialog.Title
-                      as="h3"
-                      className="text-lg font-medium leading-6 text-gray-900"
-                    >
-                      <p className="lg:hidden pt-6">
-                        {" "}
-                        Items {myOrders?.length}
-                      </p>
-                    </Dialog.Title>
-                    <div className="mt-2 pt-5">
-                      <MyOrders />
-                    </div>
-
-                    <div className="bg-white rounded-t-3xl border-t py-2">
-                      <aside className="flex items-center justify-between mt-3 pl-3">
-                        <p className="font-Poppins uppercase font-semibold text-slate-800">
-                          Total
-                        </p>
-                        <p className="font-Poppins uppercase font-semibold text-slate-800 pr-3">
-                          $ {addition}
-                        </p>
-                      </aside>
-                      <div className="flex flex-row-reverse items-center justify-between mt-3 pl-3">
-                        <Link to="/payments-page">
-                          <button
-                            type="button"
-                            className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 pr-3"
-                            onClick={closeModal}
-                          >
-                            Checkout Process
-                          </button>
-                        </Link>
-                        <button
-                          type="button"
-                          className="inline-flex justify-center rounded-md border border-transparent border-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-                          onClick={closeModal}
-                        >
-                          Close
-                        </button>
-                      </div>
-                    </div>
-                  </Dialog.Panel>
-                </Transition.Child>
-              </div>
-            </div>
-          </Dialog>
-        </Transition>
-
-        <Transition appear show={isOpenWish} as={Fragment}>
+        {/* <Transition appear show={isOpenWish} as={Fragment}>
           <Dialog as="div" className="relative z-10" onClose={closeModalWish}>
             <Transition.Child
               as={Fragment}
@@ -540,7 +825,7 @@ const Navbar = () => {
               </div>
             </div>
           </Dialog>
-        </Transition>
+        </Transition> */}
       </section>
     </>
   );
